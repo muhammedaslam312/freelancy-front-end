@@ -7,8 +7,8 @@ import AuthContext from '../../context/AuthContext';
 function OtpVerification() {
 
     
-    const {verifyUser} =useContext(AuthContext)
-    const [otpDetails, setOtpDetails] = useState({mobile:'',code:''});
+    const {verifyUser,teacherMobile} =useContext(AuthContext)
+    const [otpDetails, setOtpDetails] = useState({mobile:`${teacherMobile}`,code:''});
     const handleChanges=((event)=>{
         setOtpDetails({
           ...otpDetails,[event.target.name] : event.target.value
@@ -29,6 +29,7 @@ function OtpVerification() {
     
       }
     
+console.log(teacherMobile);
 
   return (
     <div>
@@ -44,10 +45,10 @@ function OtpVerification() {
               <h2 className="fw-bold mb-2 text-uppercase">Mobile Phone Verification</h2>
               <p className="text-white-50 mb-5">Please enter your Mobile Number </p>
                 <form onSubmit={handleSubmit}>
-              <div className="form-outline form-white mb-4">
+              {/* <div className="form-outline form-white mb-4">
                 <input type="number" name='mobile' onChange={handleChanges} value={otpDetails.mobile} placeholder='Mobile Number'  className="form-control form-control-lg" />
                 
-              </div>
+              </div> */}
 
               <div className="form-outline form-white mb-4">
                 <input type="text" name='code' onChange={handleChanges} value={otpDetails.code}  id="typePasswordX" placeholder='Otp' className="form-control form-control-lg" />

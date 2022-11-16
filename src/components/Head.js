@@ -10,6 +10,7 @@ import ForumIcon from "@mui/icons-material/Forum";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import './Header.css'
 function Head() {
   const {user,teacher,logOutUser,logOutTeacher} = useContext(AuthContext)
@@ -68,7 +69,7 @@ function Head() {
             
             freelancy
           </Link>
-          
+          {user ?
           <>
           <form className="d-flex col-md-6 ms-2">
             <input
@@ -94,15 +95,13 @@ function Head() {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mb-2 ms-auto mb-lg-1 d-flex">
-            {user && 
-            <li className="nav-item ms-3 ">
-            <Link to="/" className="nav-link">
-              <Tooltip title="Username">
-                <h6>{user.username}</h6>
-              </Tooltip>
-            </Link>
-          </li>
-            }
+            
+            <li>
+            <Link to="/courses" className="nav-link">Courses</Link>
+            </li>
+            <li>
+            <Link to="/mylearnig" className="nav-link">My Courses</Link>
+            </li>
               <li className="nav-item ms-3 ">
                 <Link to="/user/dashboard" className="nav-link">
                   <Tooltip title="Dashboard">
@@ -121,11 +120,11 @@ function Head() {
               {
                 user && 
                 <li className="nav-item ms-3">
-                <Link to="/wallet" className="nav-link">
-                  <Tooltip title="Wallet">
-                    <AccountBalanceWalletIcon/>
+                <Link to="/whishlist" className="nav-link">
+                  <Tooltip title="wishlist">
+                    <FavoriteIcon/>
                   </Tooltip>
-                  <span className='ms-1'>₹</span>
+                  
                 </Link>
               </li>
 
@@ -152,7 +151,14 @@ function Head() {
               </li>
             </ul>
           </div>
-          </>
+          </>:
+          <div className="navbar-nav ms-auto">
+          <Link className="nav-item nav-link " to='/user-login'>Login</Link>
+          <Link className="nav-item nav-link " to='/user-register'>Sign Up</Link>
+          <Link className="nav-item nav-link " to='/teacher/login'>Move To Teacher<ArrowRightIcon/></Link>
+          </div>
+
+}
         </div>
       </nav>
     </div>

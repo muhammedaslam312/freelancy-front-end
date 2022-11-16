@@ -8,7 +8,8 @@ import Head from '../Head'
 
 function Slogin() {
 
-  let {loginUser,user} = useContext(AuthContext)
+  let {loginUser,user,error} = useContext(AuthContext)
+  console.log(error);
   const [userDetails, setUserDetails] = useState({email:'',password:''});
 
   const handleChanges=((event)=>{
@@ -23,23 +24,14 @@ function Slogin() {
 
     axios.post(BaseUrl+'token/',userDetails).then((response) => {
       loginUser(userDetails,response)
+      console.log(response.data.detail);
      
     })
 
 
   }
-  
-
- 
-
- 
-
-  
-
-     
-  
-
-
+  console.log('aslam');
+  console.log(error);
   return (
     <div>
   <Head/>
@@ -108,6 +100,7 @@ function Slogin() {
           <div class="text-center text-lg-start mt-4 pt-2">
             <button type="submit"  class="btn btn-primary btn-lg btnl"
               >Login</button>
+              {error && <p className='text-dark'>{error}</p>}
             <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <Link to='/user-register'
                 class="link-danger">Register</Link></p>
           </div>

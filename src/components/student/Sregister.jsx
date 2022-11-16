@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import BaseUrl from '../../BaseUrl'
 import AuthContext from '../../context/AuthContext'
+import Head from '../Head'
 import './Login.css'
 
 function Sregister() {
@@ -29,7 +30,7 @@ function Sregister() {
   // console.log(teacherData);
   const submitForm =()=>{
     console.log(userDetails);
-    setTeacherMobile(userDetails.mobile)
+    
     const Form_Data = new FormData();
     Form_Data.append("email", userDetails.email)
     Form_Data.append("username", userDetails.username)
@@ -50,6 +51,8 @@ function Sregister() {
 
         })
         console.log(response.data)
+        console.log(response.data.mobile);
+        setTeacherMobile(response.data.mobile)
         navigate('/user/otp')
         
       })
@@ -65,6 +68,7 @@ function Sregister() {
 
   return (
     <div>
+      <Head/>
       <section class="vh-100">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">

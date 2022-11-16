@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Head from './Head';
+
 import Home from './Home';
 import Footer from './Footer';
 
@@ -31,8 +31,16 @@ import OtpVerification from './student/OtpVerification';
 import AdminCategory from './admin/AdminCategory';
 import AddChapter from './teacher/AddChapter';
 import AddCategory from './admin/AddCategory';
-import CheckOut from './CheckOut';
+import CheckOut from './Payment';
 import MyStudents from './teacher/MyStudents';
+import WhishList from './WhishList';
+import AddAssignment from './teacher/AddAssignment';
+import Assignments from './teacher/Assigments';
+import MyCourseDetail from './student/MyCourseDetail';
+import UserAssignment from './student/UserAssignment';
+import MyChapters from './student/MyChapters';
+import CoursesPage from './CoursesPage';
+import Payment from './Payment';
 
 
 
@@ -50,13 +58,22 @@ function Main() {
         <Route path='/' element={<RequireAuth><Home/></RequireAuth>}></Route>
         <Route path='/about' element={<About/>}></Route>
         <Route path='/details/:course_id' element={<CourseDetail/>}></Route>
-        <Route path='/checkout' element={<RequireAuth><CheckOut/></RequireAuth>}></Route>
+       
+        <Route path='/whishlist' element={<RequireAuth><WhishList/></RequireAuth>}></Route>
+        <Route path='/mychapter/:course_id/' element={<RequireAuth><MyChapters/></RequireAuth>}></Route>
+        <Route path='/mylearnig' element={<RequireAuth><MyCourseDetail/></RequireAuth>}></Route>
+
+        <Route path='/courses' element={<RequireAuth><CoursesPage/></RequireAuth>}></Route>
+        <Route path='/payment' element={<RequireAuth><Payment/></RequireAuth>}></Route>
+        
 
         {/* user_routes */}
         <Route path='/user-login' element={<Slogin/>}></Route>
         <Route path='/user-register' element={<Sregister/>}></Route>
         <Route path='/user/dashboard' element={<RequireAuth><Sdashbord/></RequireAuth>}></Route>
         <Route path='/user/otp' element={<OtpVerification/>}></Route>
+        <Route path='/user/my_courses' element={<RequireAuth><MyCourseDetail/></RequireAuth>}></Route>
+        <Route path='/user/assignment' element={<RequireAuth><UserAssignment/></RequireAuth>}></Route>
 
         {/* <Route path='/my-courses' element={<MyCourses/>}></Route> */}
         <Route path='/my-courses' element={<RequireAuth><MyCourses/></RequireAuth>}></Route>
@@ -74,6 +91,8 @@ function Main() {
         <Route path='/teacher/courses/chapters/:course_id' element={<Chapters/>}></Route>
         <Route path='/teacher/courses/chapters/:course_id/addchapter/:course_id' element={<AddChapter/>}></Route>
         <Route path='/teacher/mystudent' element={<MyStudents/>}></Route>
+        <Route path='teacher/mystudent/add_assignment/:student_id/:course_id/' element={<AddAssignment/>}></Route>
+        <Route path='teacher/mystudent/assignments/:student_id/:course_id/' element={<Assignments/>}></Route>
         
 
         {/* admin */}

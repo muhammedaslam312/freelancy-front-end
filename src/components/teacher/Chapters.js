@@ -33,30 +33,7 @@ function Chapters() {
     <section className='col-md-9 my-3'>
         <h2>Chapters</h2>
 
-    {/* <div>
-            <div className='card'>
-                <h5 className='card-header'>My Courses</h5>
-                <div className='card-body '>
-                <table className='table table-borderless'>
-                    <thead className='thead-dark'>
-                    <th>Name</th>
-                    <th>Created By</th>
-                    <th>Action</th>
-                    </thead>
-                    <tbody className=''>
-                    <td>php Development</td>
-                    <td><Link to='/'>Suraj Kumar</Link></td>
-                    <td>
-                        <button className=" btn btn-outline-danger ">Delete</button>
-                    </td>
-                    </tbody>
-                    
-                </table> 
-
-                </div>
-            </div>
-        </div> */}
-
+  
     <table class="table">
     <thead>
     {/* <h5 className='table-header '>My Courses</h5> */}
@@ -73,7 +50,7 @@ function Chapters() {
     {chapters.map((chapter,index)=>{
                 return(
                 <tr key={index}>
-                    <th scope="row">{chapter.id}</th>
+                    <th scope="row">{index}</th>
                     <td>{chapter.title}</td>
                     <td>
                     {/* <p className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal1">intro</p>

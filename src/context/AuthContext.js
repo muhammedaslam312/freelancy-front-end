@@ -19,7 +19,9 @@ export const AuthProvider = ({children})=>{
     const [teacherToken, setTeacherToken] = useState(()=>localStorage.getItem('teacherToken') ? JSON.parse(localStorage.getItem('teacherToken')):null);
 
     const [user, setUser] = useState(()=>localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')):null);
-    const [error,setError] = useState('')
+    const [error,setError] = useState('');
+
+    const [teacherError,setTeacherError] = useState('')
 
     const [teacher, setTeacher] = useState(()=>localStorage.getItem('teacher') ? JSON.parse(localStorage.getItem('teacher')):null);
 
@@ -44,7 +46,7 @@ export const AuthProvider = ({children})=>{
         console.log("form submitted")
         console.log(userDetails);
         console.log(response);
-        console.log(response.data)
+        console.log(response.data.detail)
         if (response.status === 200){
             setAuthToken(response.data);
             var decoded =jwt_decode(response.data.access);
@@ -64,6 +66,8 @@ export const AuthProvider = ({children})=>{
            
 
         }else{
+            console.log(response.status);
+            console.log('aslu');
             console.log("somthing is wrong")
             setError('invalid Email or Password')
         }
@@ -102,6 +106,7 @@ export const AuthProvider = ({children})=>{
         console.log(teacherDetail);
         console.log(response);
         console.log(response.data)
+        setTeacherError(response.data.message)
         if (response.status === 200){
             console.log("****")
             setTeacherToken(response.data);
@@ -158,6 +163,7 @@ export const AuthProvider = ({children})=>{
         logOutTeacher:logOutTeacher,
         teacher:teacher,
         error:error,
+        teacherError:teacherError,
         verifyUser:verifyUser,
         setTeacherMobile:setTeacherMobile,
         teacherMobile:teacherMobile,

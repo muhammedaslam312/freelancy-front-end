@@ -8,7 +8,7 @@ import Theader from '../Theader';
 
 
 function TeacherLogin() {
-  let {loginTeacher,teacher,error} = useContext(AuthContext)
+  let {loginTeacher,teacher,teacherError} = useContext(AuthContext)
   const [teacherDetails, setTeacherDetails] = useState({email:'',password:''});
  
 
@@ -31,7 +31,7 @@ function TeacherLogin() {
 
   }
   
-
+console.log(teacherError);
 
 
 
@@ -48,10 +48,11 @@ function TeacherLogin() {
         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
           class="img-fluid" alt="Sample image"/>
       </div>
-      {error && <p className='text-danger'>{error}</p>}
+      
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <form onSubmit={handleSubmit}>
             <h5>Teacher Login</h5>
+            
           <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
           
             <p class="lead fw-normal mb-0 me-3">Sign in with</p>
@@ -97,10 +98,9 @@ function TeacherLogin() {
           <div class="d-flex justify-content-between align-items-center">
             {/* <!-- Checkbox --> */}
             <div class="form-check mb-0">
-              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-              <label class="form-check-label" for="form2Example3">
-                Remember me
-              </label>
+              
+              
+              {teacherError && <p className='text-danger'>{teacherError}</p>}
             </div>
             <a href="#!" class="text-body">Forgot password?</a>
           </div>

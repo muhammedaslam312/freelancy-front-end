@@ -69,20 +69,58 @@ export const getEntrolledCourse = (user_id)=>{
         })
 }
 
-// export const getOneCourseChapters = (course_id)=>{
+export const getFavoriteCourses = (student_id)=>{
 
-//     return new Promise((resolve,reject)=>{
-//         const TeacherToken = JSON.parse(localStorage.getItem('teacherToken')).token
-//         console.log(TeacherToken)
-//         axios.get(BaseUrl+'get_chapters/'+course_id+'/',{
-//             headers:{"Authorization" : `Bearer ${TeacherToken}`}
-//         }).then((response)=>{
-//             console.log(response.data);
-//             console.log("getAllchapter Axios working");
-//             resolve(response.data)
-//         }).catch((err) => {
-//             console.log("getAllchapter Axios Not working");
-//             reject(err)
-//          })
-//         })
-// }
+    return new Promise((resolve,reject)=>{
+        const UserToken = JSON.parse(localStorage.getItem('authToken')).access
+        console.log(UserToken)
+        axios.get(BaseUrl+'get_favorite/'+student_id+'/',{
+            headers:{"Authorization" : `Bearer ${UserToken}`}
+        }).then((response)=>{
+            console.log(response.data);
+            console.log("getfavorite Axios working");
+            resolve(response.data)
+        }).catch((err) => {
+            console.log("getFavorite Axios Not working");
+            reject(err)
+         })
+        })
+}
+
+export const getUserAssigments = (student_id)=>{
+
+    return new Promise((resolve,reject)=>{
+        const UserToken = JSON.parse(localStorage.getItem('authToken')).access
+        console.log(UserToken)
+        axios.get(BaseUrl+'user/assignment/'+student_id+'/',{
+            headers:{"Authorization" : `Bearer ${UserToken}`}
+        }).then((response)=>{
+            console.log(response.data);
+            console.log("getAssigment Axios working");
+            resolve(response.data)
+        }).catch((err) => {
+            console.log("getAssigment Axios Not working");
+            reject(err)
+         })
+        })
+}
+
+
+
+export const getOneCourseChapters = (student_id,course_id)=>{
+
+    return new Promise((resolve,reject)=>{
+        const UserToken = JSON.parse(localStorage.getItem('authToken')).access
+        console.log(UserToken)
+        axios.get(BaseUrl+'user/get_chapters/'+student_id+'/'+course_id,{
+            headers:{"Authorization" : `Bearer ${UserToken}`}
+        }).then((response)=>{
+            console.log(response.data);
+            console.log("chapter Axios working");
+            resolve(response.data)
+        }).catch((err) => {
+            console.log("chapter Axios Not working");
+            reject(err)
+         })
+        })
+}

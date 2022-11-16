@@ -16,7 +16,36 @@ function Sdashbord() {
 
         </aside>
         <section className='col-md-9'>
-          <h1>dash</h1>
+          <div className="row">
+            <div className="col-md-4">
+              <div className="card border-primary">
+                <h5 className="card-header bg-success text-white">Total Courses</h5>
+                <div className="card-body">
+                  <h3><Link to='/teacher/courses'>10</Link></h3>
+                </div>
+
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="card border-primary">
+                <h5 className="card-header bg-success text-white">Total Students</h5>
+                <div className="card-body">
+                  <h3><Link to='/teacher/mystudent'>1</Link></h3>
+                </div>
+
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="card border-primary">
+                <h5 className="card-header bg-success text-white">Total Chapters</h5>
+                <div className="card-body">
+                  <h3><Link to='/teacher/courses'>1</Link></h3>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          
         </section>
 
       </div>

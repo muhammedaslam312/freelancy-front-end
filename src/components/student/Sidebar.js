@@ -85,6 +85,7 @@ function Sidebar() {
             <Link to='/user/dashboard' className="list-group-item list-group-item-action">Dashboard</Link>
             <Link to="/my-courses" className="list-group-item list-group-item-action">My Courses</Link>
             <Link to='/favorite-courses' className="list-group-item list-group-item-action">Favorite Courses</Link>
+            <Link to='/user/assignment' className="list-group-item list-group-item-action">Assigments</Link>
             
             <Link to='/change-password' className="list-group-item list-group-item-action">Change Password</Link>
             <p onClick={logOutUser} className="list-group-item list-group-item-action text-danger">Log Out</p> 
