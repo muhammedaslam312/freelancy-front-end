@@ -4,7 +4,7 @@ import TeacherSidebar from './TeacherSidebar'
 import Swal from 'sweetalert2'
 import BaseUrl from '../../BaseUrl'
 import axios from 'axios'
-import Theader from '../Theader'
+import Theader from './Theader'
 import AuthContext from '../../context/AuthContext'
 
 function AddAssignment() {

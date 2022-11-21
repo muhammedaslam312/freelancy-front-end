@@ -1,14 +1,16 @@
 import React, { useState,useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { getAllCourseChapters } from '../../teacher_axios/teacher_axios';
+import { getAllCourseChapters ,removeChapter} from '../../teacher_axios/teacher_axios';
 import TeacherSidebar from './TeacherSidebar'
 import { imageFolder } from '../../BaseUrl';
-import Theader from '../Theader';
+import Theader from './Theader';
 
 
 function Chapters() {
     const {course_id} =useParams()
     const [chapters, setChapters] = useState([]);
+    const[courseName,setCourseName] = useState('')
+    const [load,setLoad] =useState(false)
 
     useEffect(()=>{
         getAllCourseChapters(course_id).then((chapters)=>{
@@ -16,10 +18,11 @@ function Chapters() {
           chapters.forEach((chapter)=>{
             console.log(chapter.title)
             console.log(imageFolder+chapter.video)
+            setCourseName(chapter)
           })
         })
 
-      },[])
+      },[load])
 
   return (
     <div>
@@ -73,14 +76,14 @@ function Chapters() {
                                                                     </div>
                                                                     </div>
                                                             End Video Modal */}
-                                                            <video controls width='250'>
+                                                            <video controls width='100'>
                                                                 <source src={imageFolder+chapter.video} type='video/webm' />
                                                                 <source src={imageFolder+chapter.video} type='video/mp4'></source>
 
                                                             </video>
                     </td>
                     
-                    <td><button className=" btn btn-outline-danger mx-1">Delete</button></td>
+                    <td><button onClick={()=>{removeChapter(chapter.id);setLoad(!load)}} className=" btn btn-outline-danger mx-1">Delete</button></td>
                     
 
 

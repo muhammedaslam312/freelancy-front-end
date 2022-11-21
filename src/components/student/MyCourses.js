@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
 import AuthContext from '../../context/AuthContext'
-import { getEntrolledCourse } from '../../user_axios/user_axios'
-import Head from '../Head'
+import { getEntrolledCourse,removeEntrollCourse } from '../../user_axios/user_axios'
+import Head from '../home/Head'
 import Sidebar from './Sidebar'
 
 function MyCourses() {
 
   const {user}=useContext(AuthContext)
   
-
+  const [load,setLoad] = useState(false)
   const [entrollCourse, setEntrollCourse] = useState([]);
     
   
@@ -22,7 +22,7 @@ function MyCourses() {
 
 
 
-  },[])
+  },[load])
   console.log(entrollCourse);
   console.log(user.user_id);
   return (
@@ -66,7 +66,7 @@ function MyCourses() {
   <thead>
   {/* <h5 className='table-header '>My Courses</h5> */}
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">No</th>
       <th scope="col">Name</th>
       <th scope="col">Created By</th>
       <th scope="col">Action</th>
@@ -79,7 +79,7 @@ function MyCourses() {
       <th scope="row">{entroll.id}</th>
       <td>{entroll.course.title}</td>
       <td>{entroll.course.teacher.email}</td>
-      <td><button className=" btn btn-outline-danger ">Delete</button></td>
+      <td><button onClick={()=>{removeEntrollCourse(entroll.id);setLoad(!load)}} className=" btn btn-outline-danger ">Delete</button></td>
     </tr>
     )
     })}

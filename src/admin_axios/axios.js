@@ -8,18 +8,12 @@ import BaseUrl from '../BaseUrl';
 export const getAllusers= () =>{
     return new Promise((resolve,reject) =>{
         
-        const AuthToken = JSON.parse(localStorage.getItem('authToken'))
-        const config = {
-            headers: {
-              Authorization: `Bearer ${AuthToken ? AuthToken.access : null}`,
-            },
-          };
-          console.log(AuthToken.access)
-       
+        const AdminToken = JSON.parse(localStorage.getItem('authToken')).access
+        console.log(AdminToken)
 
-       
-
-        axios.get(BaseUrl+'getusers/').then((response)=>{
+        axios.get(BaseUrl+'getusers/',{
+            headers:{"Authorization" : `Bearer ${AdminToken}`}
+        }).then((response)=>{
             resolve(response.data)
         }).catch((err)=>{
             reject(err)
@@ -28,8 +22,12 @@ export const getAllusers= () =>{
 }
 
 export const blockUser = (user_id)=>{
-    console.log('blockkkkkkk')
-    axios.patch(BaseUrl+'blockuser/'+user_id+'/').then((response)=>{
+    
+    const AdminToken = JSON.parse(localStorage.getItem('authToken')).access
+    console.log(AdminToken)
+    axios.patch(BaseUrl+'blockuser/'+user_id+'/',{
+        headers:{"Authorization" : `Bearer ${AdminToken}`}
+    }).then((response)=>{
         console.log(response.data);
         console.log("updateUserStatus Axios working");
     }).catch((err) => {
@@ -41,18 +39,15 @@ export const blockUser = (user_id)=>{
 export const getAllteachers= () =>{
     return new Promise((resolve,reject) =>{
         
-        const AuthToken = JSON.parse(localStorage.getItem('authToken'))
-        const config = {
-            headers: {
-              Authorization: `Bearer ${AuthToken ? AuthToken.access : null}`,
-            },
-          };
-          console.log(AuthToken.access)
+        const AdminToken = JSON.parse(localStorage.getItem('authToken')).access
+        console.log(AdminToken)
        
 
        
 
-        axios.get(BaseUrl+'getteachers/').then((response)=>{
+        axios.get(BaseUrl+'getteachers/',{
+            headers:{"Authorization" : `Bearer ${AdminToken}`}
+        }).then((response)=>{
             resolve(response.data)
         }).catch((err)=>{
             reject(err)
@@ -61,10 +56,12 @@ export const getAllteachers= () =>{
 }
 
 export const verifyTeacher = (teacher_id)=>{
-
+    const AdminToken = JSON.parse(localStorage.getItem('authToken')).access
     console.log(teacher_id)
     console.log('verifyyyyyy')
-    axios.patch(BaseUrl+'verifyteacher/'+teacher_id+'/').then((response)=>{
+    axios.patch(BaseUrl+'verifyteacher/'+teacher_id+'/',{
+        headers:{"Authorization" : `Bearer ${AdminToken}`}
+    }).then((response)=>{
         console.log('********')
         console.log(response.data);
         console.log("updateUserStatus Axios working");
@@ -79,7 +76,9 @@ export const getAllAdminCategories = ()=>{
     return new Promise((resolve,reject)=>{
         const AdminToken = JSON.parse(localStorage.getItem('authToken')).access
         console.log(AdminToken)
-        axios.get(BaseUrl+'admin/course_category_list/').then((response)=>{
+        axios.get(BaseUrl+'admin/categorylist/',{
+            headers:{"Authorization" : `Bearer ${AdminToken}`}
+        }).then((response)=>{
             console.log(response.data);
             console.log("getAllcategories Axios working");
             resolve(response.data)

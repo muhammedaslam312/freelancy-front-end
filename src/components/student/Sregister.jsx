@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import BaseUrl from '../../BaseUrl'
 import AuthContext from '../../context/AuthContext'
-import Head from '../Head'
+import Head from '../home/Head'
 import './Login.css'
 
 function Sregister() {

@@ -1,13 +1,14 @@
 import Axios from "axios";
 import React, { useContext, useState } from "react";
 
-import Head from "./Head";
-import BaseUrl from "../BaseUrl";
-import { useLocation } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
+import Head from "../home/Head";
+import BaseUrl from "../../BaseUrl";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
 
 function Payment() {
-
+    
+    const navigate = useNavigate()
     const {user} =useContext(AuthContext)
     const state  = useLocation();
     const student_id = user.user_id
@@ -37,6 +38,7 @@ function Payment() {
           console.log("Everything is OK!");
           setCourse("");
           setAmount("");
+          navigate('/payment/success')
           
         })
         .catch((err) => {
@@ -115,20 +117,59 @@ function Payment() {
   console.log(state);
   console.log(student_id);
   return (
-    <div style={{minHeight:'90vh'}}>
-        <Head/>
+    // <div style={{minHeight:'90vh'}}>
+    //     <Head/>
    
-    <div className="container" >
-      <div className="row">
-        <div className="col-8">
+    // <div className="container" >
+    //   <div className="row">
+    //     <div className="col-8">
 
-        </div>
-        <div className="col-4 bg-light mt-5">
-        <form style={{textAlign:'left',width:'300px',marginTop:'8rem'}}>
-        <h5 style={{fontSize:'30px'}}>Summary</h5>
+    //     </div>
+    //     <div className="col-4 bg-light mt-5">
+    //     <form style={{textAlign:'left',width:'300px',marginTop:'8rem'}}>
+    //     <h5 style={{fontSize:'30px'}}>Summary</h5>
 
-        <div className="form-group" style={{display:'flex',justifyContent:'space-between'}}>
-          <label htmlFor="name">Product name</label>
+    //     <div className="form-group" style={{display:'flex',justifyContent:'space-between'}}>
+    //       <label htmlFor="name">Product name</label>
+    //       {/* <input
+    //         type="text"
+    //         className="form-control"
+    //         id="name"
+    //         value={name}
+    //         onChange={(e) => setName(e.target.value)}
+    //       /> */}
+    //       <p>{name}</p>
+    //     </div>
+    //     <div style={{display:'flex',justifyContent:'space-between'}} className="form-group">
+    //       <label htmlFor="exampleInputPassword1">Amount</label>
+    //       {/* <input
+    //         type="text"
+    //         className="form-control"
+    //         id="amount"
+    //         value={amount}
+    //         onChange={(e) => setAmount(e.target.value)}
+    //       /> */}
+    //       <p>{amount}</p>
+    //     </div>
+    //   <button  onClick={showRazorpay} className="btn btn-primary " style={{width:'100%',backgroundColor:'#a435f0',border:'#a435f0'}}>
+    //     Pay with razorpay
+    //   </button>
+    //   </form>
+
+    //     </div>
+    //   </div>
+      
+    //   </div>
+    // </div>
+    <div>
+      <Head/>
+    <div className="container" style={{ marginTop: "20vh" }}>
+      <form>
+        <h1>Summary</h1>
+
+        <div className="form-group mt-2">
+          {/* <label htmlFor="name">Product name</label> */}
+          
           {/* <input
             type="text"
             className="form-control"
@@ -136,10 +177,13 @@ function Payment() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           /> */}
-          <p>{name}</p>
+          {/* <p>{name}</p> */}
+          <span>Product Name:</span><span>{name}</span>
         </div>
-        <div style={{display:'flex',justifyContent:'space-between'}} className="form-group">
-          <label htmlFor="exampleInputPassword1">Amount</label>
+        <div className="form-group mt-2" >
+        <span>Product price:</span><span>{amount}</span>
+
+          {/* <label htmlFor="exampleInputPassword1">Amount</label> */}
           {/* <input
             type="text"
             className="form-control"
@@ -147,17 +191,13 @@ function Payment() {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           /> */}
-          <p>{amount}</p>
+          {/* <p>{amount}</p> */}
         </div>
-      <button  onClick={showRazorpay} className="btn btn-primary " style={{width:'100%',backgroundColor:'#a435f0',border:'#a435f0'}}>
+      </form>
+      <button onClick={showRazorpay} className="btn btn-primary btn-block mt-2"  style={{width:'25%',backgroundColor:'#a435f0',border:'#a435f0'}}>
         Pay with razorpay
       </button>
-      </form>
-
-        </div>
-      </div>
-      
-      </div>
+    </div>
     </div>
   );
 }

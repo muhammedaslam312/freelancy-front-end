@@ -1,5 +1,5 @@
 
-import Head from './Head'
+import Head from './home/Head'
 import React, { useState,useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { imageFolder } from '../BaseUrl';
@@ -10,29 +10,46 @@ import './CoursePage.css'
 
 
 function CoursesPage() {
+    
 
-    let {user} = useContext(AuthContext)
-  const [latestCourses, setLatestCourses] = useState([]);
-
+    
+    let {user,search} = useContext(AuthContext)
+    // const s=search
+    const [course,setCourse] =useState([]);
+    
+  // const [latestCourses, setLatestCourses] = useState([]);
+  const [filterCourse,setFilterCourse] = useState([]);
+  console.log(filterCourse);
+  console.log(course);
 
 
   useEffect(()=>{
     getAllLatestCourse().then((courses)=>{
-      setLatestCourses(courses)
-      console.log(latestCourses);
-      courses.forEach((course)=>{
-        console.log(course.title)
-      })
+      setCourse(courses)
+      // setLatestCourses(courses)
+     
+      
+      
+      // console.log(latestCourses);
+      // courses.forEach((course)=>{
+      //   console.log(course.title)
+      // })
     })
-    
+    let filter = course.filter((value)=>{
+      return value.title.toLowerCase().includes(search.toLowerCase());
+    })
+    setFilterCourse(filter)
+    console.log(filter,'sddddd');
 
 
 
 
-  },[])
+  },[search])
+  console.log(search);
+
   return (
     <div>
-        <Head/>
+        <Head />
       <section class="new-product-area section-padding30">
             <div class="container my-5">
                 {/* <!-- Section tittle --> */}
@@ -44,8 +61,35 @@ function CoursesPage() {
                     </div>
                 </div>
                 <div class="row">
-                { latestCourses &&
-          latestCourses.map((course,index)=>{
+                { filterCourse.length > 0 ?
+          
+
+filterCourse.map((course,index)=>{
+  return (
+    <div className=" col-12 col-md-6 col-lg-3 mt-4  " key={index}>
+    <div className=" m-auto" style={{ width: "18rem" }}>
+      <Link to={`/details/${course.id}`} style={{ margin:'auto'}}><img style={{ height: "200px",width: "100%",objectFit:'cover'}}src={imageFolder+course.feature_image}className="card-img-top" alt="..." />
+      </Link>
+      <div className="card-body" style={{textAlign:'left'}}>
+        <Link to={`/details/${course.id}`} style={{textDecoration:'none',fontSize:'25px',fontWeight:'bold',color:'black'}}  >{course.title}</Link>
+      </div>
+      <div className="card-footer">
+      <div style={{textAlign:'left'}}>
+                      creater: {course.teacher.full_name}</div>
+      {course.price === 0 ?
+                      <div  style={{textAlign:'left'}}><p className='btn btn-warning'>Free</p></div>
+                      :
+                    <div style={{textAlign:'left'}}>${course.price}</div>
+                  }
+        </div>
+    </div>
+  </div>
+            
+
+            )
+          })
+          :
+          course.map((course,index)=>{
             return (
               <div className=" col-12 col-md-6 col-lg-3 mt-4  " key={index}>
               <div className=" m-auto" style={{ width: "18rem" }}>
@@ -55,9 +99,13 @@ function CoursesPage() {
                   <Link to={`/details/${course.id}`} style={{textDecoration:'none',fontSize:'25px',fontWeight:'bold',color:'black'}}  >{course.title}</Link>
                 </div>
                 <div className="card-footer">
-                    <div style={{textAlign:'left'}}>Rating : 4.5/5</div>
-                    <div style={{textAlign:'left'}}>Enrolled Students:</div>
-                    <div style={{textAlign:'left'}}>$54343</div>
+                <div style={{textAlign:'left'}}>
+                      creater: {course.teacher.full_name}</div>
+                     {course.price === 0 ?
+                      <div  style={{textAlign:'left'}}><p className='btn btn-warning'>Free</p></div>
+                      :
+                    <div style={{textAlign:'left'}}>${course.price}</div>
+                  }
                   </div>
               </div>
             </div>
@@ -66,6 +114,7 @@ function CoursesPage() {
 
             )
           })
+
         }
                 
                    

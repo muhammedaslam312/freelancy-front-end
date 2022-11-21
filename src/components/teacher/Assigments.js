@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import AuthContext from '../../context/AuthContext';
 import { getAssigments, getEntrolledStudent } from '../../teacher_axios/teacher_axios';
-import Theader from '../Theader';
+import Theader from './Theader';
 import TeacherSidebar from './TeacherSidebar';
 
 function Assignments() {
@@ -53,7 +53,7 @@ function Assignments() {
       <thead>
       {/* <h5 className='table-header '>My Courses</h5> */}
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">No</th>
           <th scope="col">title</th>
           <th scope="col">Add time</th>
           <th scope="col">Status</th>
@@ -64,11 +64,17 @@ function Assignments() {
       {assigment.map((assigment,index)=>{
                    return(
                    <tr key={index}>
-                    <th scope="row">{assigment.id}</th>
+                    <th scope="row">{index}</th>
                     <td>{assigment.title}</td>
                     
                     <td>{assigment.add_time}</td>
-                    <td className='text-success'>completed</td>
+                    <td >
+                      {assigment.is_submitted === true ?
+                       <p className='text-success'>Completed</p>:
+                       <p className='text-danger'>Not Completed</p>
+                    }
+                     
+                      </td>
                     
                    </tr>
                    )

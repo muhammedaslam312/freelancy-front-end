@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import AuthContext from '../context/AuthContext'
+import AuthContext from '../../context/AuthContext'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import AuthContext from '../../context/AuthContext';
 import { getEntrolledStudent } from '../../teacher_axios/teacher_axios';
-import Theader from '../Theader';
+import Theader from './Theader';
 import TeacherSidebar from './TeacherSidebar';
 function MyStudents() {
     const {teacher} = useContext(AuthContext)
@@ -60,7 +60,7 @@ function MyStudents() {
       {entrollStudent.map((entroll,index)=>{
                    return(
                    <tr key={index}>
-                    <th scope="row">{entroll.id}</th>
+                    <th scope="row">{index+1}</th>
                     <td>{entroll.student.username}</td>
                     
                     <td>{entroll.student.email}</td>

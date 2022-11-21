@@ -1,6 +1,6 @@
 import React from 'react'
-import Footer from './Footer'
-import Head from './Head'
+import Footer from './home/Footer'
+import Head from './home/Head'
 
 function About() {
   return (

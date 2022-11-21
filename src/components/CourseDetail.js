@@ -4,7 +4,7 @@ import { getCourseDetails } from "../user_axios/user_axios";
 import { useContext, useEffect, useState } from "react";
 import BaseUrl, { imageFolder } from "../BaseUrl";
 import axios from "axios";
-import Head from "./Head";
+import Head from "./home/Head";
 import AuthContext from "../context/AuthContext";
 import DialogContent from '@mui/material/DialogContent';
 import Swal from "sweetalert2";
@@ -48,7 +48,7 @@ function CourseDetail() {
             icon: 'success',
             title: 'This course has been added in your wish list',
             showConfirmButton: false,
-            timer: 10000,
+            timer: 2000,
             toast: true,
             timerProgressBar: true
 
@@ -110,7 +110,7 @@ function CourseDetail() {
             icon: 'success',
             title: 'This course has been removed from your wish list',
             showConfirmButton: false,
-            timer: 10000,
+            timer: 2000,
             toast: true,
             timerProgressBar: true
 
@@ -197,10 +197,10 @@ function CourseDetail() {
                   <div className="card-body">
                     <Link style={{ textDecoration: "none",color:'black',fontSize:'25px',fontWeight:'bold',  }} to="/details/1" className="card-title">{course.title}</Link>
                     {favoriteStatus !== 'success' &&
-                      <span className="float-end fs-6 mt-2"><button onClick={markAsFavorite} title="add in your wishlist" className="btn btn-outline-danger"><i className="bi bi-heart"></i></button></span>
+                      <span className="float-end fs-6 mt-2"><button onClick={()=>{markAsFavorite();setLoad(!load)}} title="add in your wishlist" className="btn btn-outline-danger"><i className="bi bi-heart"></i></button></span>
                     }
                     {favoriteStatus === 'success' &&
-                      <span className="float-end fs-6 mt-2"><button onClick={removeFavorite} title="remove from  your wishlist" className="btn btn-danger"><i className="bi bi-heart"></i></button></span>
+                      <span className="float-end fs-6 mt-2"><button onClick={()=>{removeFavorite();setLoad(!load)}} title="remove from  your wishlist" className="btn btn-danger"><i className="bi bi-heart"></i></button></span>
                     }
                   </div>
                   <div className="card-footer">
@@ -226,7 +226,7 @@ function CourseDetail() {
                   <p style={{textAlign:'left'}}><b>Created by        : </b><Link to="/user_details/1" style={{ textDecoration: "None" }}>{course.teacher.full_name}</Link> 12/12/12</p>
                   <p style={{textAlign:'left'}}><b>Duration          : </b>3 Hours</p>
                   <p style={{textAlign:'left'}}><b>Enrolled Students : </b>{entroll_count} Students</p>
-                  <p style={{textAlign:'left'}}><b>Rating : </b> 4.5/5</p>
+                  
                   {enrollStatus ?
 
                     <div style={{backgroundColor:'green',color:'white',padding:'5px',borderRadius:'10px'}} className="float-end">You Are Entrolled</div>
@@ -270,7 +270,7 @@ function CourseDetail() {
                               <div className="modal-body">
                                 <div className="ratio ratio-16x9">
                                   {/* <iframe src={imageFolder+chapter.video} title="" frameborder="0" allowfullscreen></iframe>  */}
-                                  <video key={video} controls autoplay width='250'>
+                                  <video key={video} controls autoplay width='200'>
                                     <source src={video} type='video/webm' />
                                     <source src={video} type='video/mp4'></source>
 
@@ -304,15 +304,15 @@ function CourseDetail() {
             return (
               <div className=" col-12 col-md-6 col-lg-3 mt-4" key={index}>
                 <div>
-                  <a ><img style={{ height: "200px",width: "100%",objectFit:'cover'}} src={imageFolder + '/media/' + rel.fields.feature_image} className="card-img-top" alt="..." />
-                  </a>
+                  <Link to={`/details/${rel.pk}`} ><img style={{ height: "200px",width: "100%",objectFit:'cover'}} src={imageFolder + '/media/' + rel.fields.feature_image} className="card-img-top" alt="..." />
+                  </Link>
                   <div className="card-body" style={{textAlign:'left'}}>
                     <Link to={`/details/${rel.pk}`} className="card-title" style={{textDecoration:'none',fontSize:'25px',fontWeight:'bold',color:'black'}}>{rel.fields.title}</Link>
 
                   </div>
                   <div className="card-footer">
                    
-                    <div style={{textAlign:'left'}}>$54343</div>
+                    <div style={{textAlign:'left'}}>₹{rel.fields.price}</div>
                   </div>
                 </div>
               </div>

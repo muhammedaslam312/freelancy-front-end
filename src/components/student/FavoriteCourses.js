@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import Head from '../Head'
+import Head from '../home/Head'
 import Sidebar from './Sidebar'
 
 function FavoriteCourses() {

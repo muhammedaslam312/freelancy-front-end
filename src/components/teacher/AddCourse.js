@@ -5,7 +5,7 @@ import AuthContext from '../../context/AuthContext';
 import axios from 'axios';
 import BaseUrl from '../../BaseUrl';
 import Swal from 'sweetalert2';
-import Theader from '../Theader';
+import Theader from './Theader';
 
 
 function AddCourse() {
@@ -99,6 +99,7 @@ function AddCourse() {
                         <div className="mb-3">
                                 <label for='title' className="form-labe">Category</label>
                                 <select name="category" onChange={handleChange} className='form-control'>
+                                    <option value="">--Please choose an option--</option>
                                     {categories.map((category,index)=>{
                                         return(<option key={index} value={category.id}>{category.title}</option>)
                                     })}

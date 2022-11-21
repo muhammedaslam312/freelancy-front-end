@@ -5,12 +5,13 @@ import { getAllTeacherCourses } from '../../teacher_axios/teacher_axios';
 import { imageFolder } from '../../BaseUrl';
 
 import TeacherSidebar from './TeacherSidebar'
-import Theader from '../Theader';
+import Theader from './Theader';
 
 function TeacherCourses() {
   const {teacher} = useContext(AuthContext)
 
   const [courses, setCourses] = useState([]);
+ 
 
 
   useEffect(()=>{
@@ -18,6 +19,7 @@ function TeacherCourses() {
       setCourses(courses)
       courses.forEach((course)=>{
         console.log(course.title)
+        
       })
     })
 
@@ -42,7 +44,7 @@ function TeacherCourses() {
   <thead>
   {/* <h5 className='table-header '>My Courses</h5> */}
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">No</th>
       <th scope="col">Name</th>
       <th scope="col">Image</th>
       <th scope="col">Action</th>
@@ -52,7 +54,7 @@ function TeacherCourses() {
   {courses.map((course,index)=>{
                return(
                <tr key={index}>
-                <th scope="row">{course.id}</th>
+                <th scope="row">{index+1}</th>
                 <td>{course.title}</td>
                 
                 <td><img src={imageFolder+course.feature_image} width='80' className='rounded' /></td>

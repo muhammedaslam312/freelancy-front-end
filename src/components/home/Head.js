@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import AuthContext from '../context/AuthContext';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import AuthContext from '../../context/AuthContext';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import LocalLibraryRoundedIcon from "@mui/icons-material/LocalLibraryRounded";
@@ -13,55 +13,15 @@ import Tooltip from "@mui/material/Tooltip";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import './Header.css'
 function Head() {
-  const {user,teacher,logOutUser,logOutTeacher} = useContext(AuthContext)
+  const {user,teacher,logOutUser,logOutTeacher,setSearch} = useContext(AuthContext)
+  const navigate =useNavigate()
+
+  const onSubmit=()=>{
+    navigate('/courses')
+  }
   console.log(user)
   return (
-//     <nav className="navbar navbar-expand-lg navbar-dark bg-gray-800">
-//       <div className='container'>
-//   <a className="navbar-brand " href="#">Navbar</a>
-//   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-//     <span className="navbar-toggler-icon"></span>
-//   </button>
-//   <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-//     <div className="navbar-nav ms-auto">
-//       {user &&
-      
-//       <Link className="nav-item nav-link" to='/'>Home</Link>
-// }
-// {user &&
-//       <a className="nav-item nav-link" href="#">Courses</a>
-//     }
-//     {user &&
-//       <Link className="nav-item nav-link" to='/about'>About</Link>}
-      
-    
-//       {user  ?
-      
-//       <li className='nav-item dropdown'>
-       
-//       <ul className='dropdown-menu text-dark' aria-labelledby='navbarDropdown'>
-//         <li><Link className="dropdown-item  text-dark" to='/user-login'>Login</Link></li>
-//         <li><Link className="dropdown-item text-dark" to='/user-register'>Register</Link></li>
-//         <li><hr className='dropdown-divider'/></li>
-//         <li><a className="dropdown-item text-dark" onClick={logOutUser}>Log Out</a></li>
-//         <li><Link className="dropdown-item text-dark" to='/user-dashboard'>Dashboard</Link></li>
-//         <li></li>
-//       </ul>
-//       </li>
-//       :
-      
-//       <Link className="nav-item nav-link" to='/user-login'>Login</Link>
- 
-     
-//         }
-       
 
-      
-     
-//     </div>
-//   </div>
-//   </div>
-// </nav>
 <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-header">
         <div className="container">
@@ -71,10 +31,12 @@ function Head() {
           </Link>
           {user ?
           <>
-          <form className="d-flex col-md-6 ms-2">
+          <form onSubmit={onSubmit} className="d-flex col-md-6 ms-2">
             <input
+            onChange={(e)=>{setSearch(e.target.value)}}
               className="form-control me-2"
               type="search"
+
               placeholder="Search"
               aria-label="Search"
             />
@@ -110,13 +72,13 @@ function Head() {
                 </Link>
               </li>
 
-              <li className="nav-item ms-3 ">
+              {/* <li className="nav-item ms-3 ">
                 <Link to="/messenger" className="nav-link">
                   <Tooltip title="Messager">
                     <ForumIcon />
                   </Tooltip>
                 </Link>
-              </li>
+              </li> */}
               {
                 user && 
                 <li className="nav-item ms-3">

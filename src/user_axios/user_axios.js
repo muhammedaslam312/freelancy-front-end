@@ -4,7 +4,7 @@ import BaseUrl from "../BaseUrl"
 export const getAllLatestCourse= ()=>{
 
     return new Promise((resolve,reject)=>{
-        const UserToken = JSON.parse(localStorage.getItem('authToken')).acess
+        const UserToken = JSON.parse(localStorage.getItem('authToken')).access
         console.log(UserToken)
         axios.get(BaseUrl+'get_allcourses/latest/').then((response)=>{
             console.log(response.data);
@@ -69,6 +69,24 @@ export const getEntrolledCourse = (user_id)=>{
         })
 }
 
+export const removeEntrollCourse = (entroll_id)=>{
+
+    return new Promise((resolve,reject)=>{
+        const UserToken = JSON.parse(localStorage.getItem('authToken')).access
+        console.log(UserToken)
+        axios.delete(BaseUrl+'delete_entroll/'+entroll_id+'/',{
+            headers:{"Authorization" : `Bearer ${UserToken}`}
+        }).then((response)=>{
+            console.log(response.data);
+            console.log("delete Axios working");
+            resolve(response.data)
+        }).catch((err) => {
+            console.log("delete Axios Not working");
+            reject(err)
+         })
+        })
+}
+
 export const getFavoriteCourses = (student_id)=>{
 
     return new Promise((resolve,reject)=>{
@@ -87,12 +105,12 @@ export const getFavoriteCourses = (student_id)=>{
         })
 }
 
-export const getUserAssigments = (student_id)=>{
+export const getUserAssigments = (course_id,student_id)=>{
 
     return new Promise((resolve,reject)=>{
         const UserToken = JSON.parse(localStorage.getItem('authToken')).access
         console.log(UserToken)
-        axios.get(BaseUrl+'user/assignment/'+student_id+'/',{
+        axios.get(BaseUrl+'user/assignment/'+course_id+'/'+student_id+'/',{
             headers:{"Authorization" : `Bearer ${UserToken}`}
         }).then((response)=>{
             console.log(response.data);

@@ -26,6 +26,10 @@ export const AuthProvider = ({children})=>{
     const [teacher, setTeacher] = useState(()=>localStorage.getItem('teacher') ? JSON.parse(localStorage.getItem('teacher')):null);
 
     const [loading, setLoading] = useState(true);
+
+    const [courseId,setCourseId] =useState('');
+
+    const [search,setSearch]= useState('');
     
     // const getUserData = (id) => {
     //     axios.get(BaseUrl+'user_details/'+id).then(response =>{
@@ -167,6 +171,10 @@ export const AuthProvider = ({children})=>{
         verifyUser:verifyUser,
         setTeacherMobile:setTeacherMobile,
         teacherMobile:teacherMobile,
+        setCourseId:setCourseId,
+        courseId:courseId,
+        search:search,
+        setSearch:setSearch,
         
         
     }

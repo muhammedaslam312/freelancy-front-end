@@ -55,6 +55,24 @@ export const getAllCourseChapters = (course_id)=>{
         })
 }
 
+export const removeChapter = (chapter_id)=>{
+
+    return new Promise((resolve,reject)=>{
+        const TeacherToken = JSON.parse(localStorage.getItem('teacherToken')).token
+        console.log(TeacherToken)
+        axios.delete(BaseUrl+'delete_chapter/'+chapter_id+'/',{
+            headers:{"Authorization" : `Bearer ${TeacherToken}`}
+        }).then((response)=>{
+            console.log(response.data);
+            console.log("delete Axios working");
+            resolve(response.data)
+        }).catch((err) => {
+            console.log("delete Axios Not working");
+            reject(err)
+         })
+        })
+}
+
 export const getEntrolledStudent = (teacher_id)=>{
 
     return new Promise((resolve,reject)=>{

@@ -1,5 +1,5 @@
 
-import Head from '../Head'
+import Head from '../home/Head'
 import React, { useContext, useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
 import AuthContext from '../../context/AuthContext'
@@ -42,10 +42,10 @@ function MyCourseDetail() {
             return (
               <div className=" col-12 col-md-6 col-lg-3 mt-4 mx-1">
               <div className="card m-auto bg-light " style={{ width: "18rem" }}>
-                <Link to={`/details/${course.course.id}`} style={{ margin:'auto'}}><img style={{ height: "200px",width: "200px"}}src={imageFolder+course.course.feature_image}className="card-img-top" alt="..." />
+                <Link to={`/mychapter/${course.course.id}`} style={{ margin:'auto'}}><img style={{ height: "200px",width: "100%",objectFit:'cover'}}src={imageFolder+course.course.feature_image}className="card-img-top" alt="..." />
                 </Link>
                 <div className="card-body">
-                  <Link to={`/mychapter/${course.course.id}`}  className="card-title">{course.course.title}</Link>
+                  <Link to={`/mychapter/${course.course.id}`} style={{textDecoration:'none',fontSize:'25px',fontWeight:'bold',color:'black'}}  className="card-title">{course.course.title}</Link>
                 </div>
                 
               </div>

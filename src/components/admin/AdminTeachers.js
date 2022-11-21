@@ -7,7 +7,7 @@ import AdminSidebar from './AdminSidebar'
 
 function AdminTeachers() {
 
-    const[status,setStatus]=useState(true)
+    const[status,setStatus]=useState(false)
     const [teachers, setTeachers] = useState([])
     const [loaded, setLoaded] = useState(true);
 

@@ -4,7 +4,7 @@ import './Login.css'
 import AuthContext from '../../context/AuthContext'
 import axios from 'axios'
 import BaseUrl from '../../BaseUrl'
-import Head from '../Head'
+import Head from '../home/Head'
 
 function Slogin() {
 

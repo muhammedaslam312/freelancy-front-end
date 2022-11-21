@@ -1,5 +1,5 @@
 import React from 'react'
-import Head from '../Head'
+import Head from '../home/Head'
 import Sidebar from './Sidebar'
 
 function ChangePassword() {

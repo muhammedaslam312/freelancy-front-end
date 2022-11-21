@@ -2,14 +2,19 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext';
 import { getOneCourseChapters } from '../../user_axios/user_axios';
-import Head from '../Head'
+import Head from '../home/Head'
 import { imageFolder } from '../../BaseUrl'
 import '../../components/css/home.css'
+import CourseSlidebar from './CourseSlidebar';
 
 function MyChapters() {
 
     let {course_id} = useParams(); 
-    let {user} = useContext(AuthContext)
+    
+    let {user,setCourseId} = useContext(AuthContext)
+    // setCourseId(course_id)
+    localStorage.setItem('cource',course_id)
+    
     const user_id= user.user_id;
 
     const [chapters,setChapter] =useState([]);
@@ -22,6 +27,11 @@ function MyChapters() {
           setChapter(chapter)
           
         })
+
+        const items = JSON.parse(localStorage.getItem('cource',course_id));
+        if (items) {
+        setCourseId(items);
+        }
     
     
     
@@ -32,6 +42,7 @@ console.log(video);
   return (
     <div >
         <Head/>
+        <CourseSlidebar data={user_id}/>
         <div className="container">
             
             <h3 className="border-bottom pd-1 mt-5 h2">My Chapters</h3>

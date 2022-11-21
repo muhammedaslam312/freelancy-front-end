@@ -42,7 +42,7 @@ function AddCategory() {
           console.log(courseCategory)  
           console.log("========")
 
-        axios.post(BaseUrl+'admin/course_category_list/',form_Data,
+        axios.post(BaseUrl+'admin/addcategory/',form_Data,
         ).then((response)=>{
             console.log(response.data)
             console.log("Category added successfully");

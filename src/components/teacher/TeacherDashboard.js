@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import {Routes as Switch,Route } from 'react-router-dom'
 import BaseUrl from '../../BaseUrl'
 import AuthContext from '../../context/AuthContext'
-import Theader from '../Theader'
+import Theader from './Theader'
 
 import TeacherSidebar from './TeacherSidebar'
 
@@ -61,18 +61,26 @@ function TeacherDashboard() {
             </div>
             <div className="col-md-4">
               <div className="card border-primary">
-                <h5 className="card-header bg-success text-white">Total Chapters</h5>
+                <h5 className="card-header bg-success text-white">Total Amount</h5>
                 <div className="card-body">
-                  <h3><Link to='/teacher/courses'>{dashboard.total_chapters}</Link></h3>
+                  <p>total amount</p>
+                  
+
                 </div>
 
               </div>
             </div>
+            
           </div>
+          
+
           
         </section>
 
       </div>
+    </div>
+    <div>
+      
     </div>
     </div>
 

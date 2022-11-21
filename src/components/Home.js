@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { imageFolder } from '../BaseUrl';
 import AuthContext from '../context/AuthContext';
 import { getAllLatestCourse, getAllRecomentedCourse } from '../user_axios/user_axios';
-import Carosel from './Carosel';
-import Head from './Head';
+import Carosel from './home/Carosel';
+import Head from './home/Head';
 import '../components/css/home.css'
 function Home() {
 
@@ -55,9 +55,14 @@ function Home() {
                   <Link to={`/details/${course.id}`} style={{textDecoration:'none',fontSize:'25px',fontWeight:'bold',color:'black'}}  >{course.title}</Link>
                 </div>
                 <div className="card-footer">
-                    <div style={{textAlign:'left'}}>Rating : 4.5/5</div>
-                    <div style={{textAlign:'left'}}>Enrolled Students:</div>
-                    <div style={{textAlign:'left'}}>$54343</div>
+                    {/* <div style={{textAlign:'left'}}>Rating : 4.5/5</div> */}
+                    <div style={{textAlign:'left'}}>
+                      creater: {course.teacher.full_name}</div>
+                      {course.price === 0 ?
+                      <div  style={{textAlign:'left'}}><p className='btn btn-warning'>Free</p></div>
+                      :
+                    <div style={{textAlign:'left'}} className='fw-bold'>₹{course.price}</div>
+                  }
                   </div>
               </div>
             </div>
@@ -83,8 +88,8 @@ function Home() {
             </div>
             <div className="card-footer">
                   <div style={{textAlign:'left'}}>Rating : 4.5/5</div>
-                  <div style={{textAlign:'left'}}>Enrolled Students:</div>
-                  <div style={{textAlign:'left'}}>$54343</div>
+                  
+                  <div style={{textAlign:'left'}} className='fw-bold'>₹{course.price}</div>
             </div>
           </div>
         </div>

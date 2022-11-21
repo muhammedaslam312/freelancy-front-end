@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext';
 
 import { getUserAssigments } from '../../user_axios/user_axios';
-import Head from '../Head';
+import Head from '../home/Head';
 
 import Sidebar from './Sidebar';
 

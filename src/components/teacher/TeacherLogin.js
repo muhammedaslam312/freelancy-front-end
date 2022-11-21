@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import AuthContext from '../../context/AuthContext';
 import axios from 'axios'
 import BaseUrl from '../../BaseUrl'
-import Theader from '../Theader';
+import Theader from './Theader';
 
 
 

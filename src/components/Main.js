@@ -2,7 +2,7 @@ import React from 'react'
 
 
 import Home from './Home';
-import Footer from './Footer';
+import Footer from './home/Footer';
 
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import About from './About';
@@ -31,7 +31,7 @@ import OtpVerification from './student/OtpVerification';
 import AdminCategory from './admin/AdminCategory';
 import AddChapter from './teacher/AddChapter';
 import AddCategory from './admin/AddCategory';
-import CheckOut from './Payment';
+
 import MyStudents from './teacher/MyStudents';
 import WhishList from './WhishList';
 import AddAssignment from './teacher/AddAssignment';
@@ -40,7 +40,11 @@ import MyCourseDetail from './student/MyCourseDetail';
 import UserAssignment from './student/UserAssignment';
 import MyChapters from './student/MyChapters';
 import CoursesPage from './CoursesPage';
-import Payment from './Payment';
+import Payment from './payment/Payment';
+import MyAssignment from './student/MyAssignment';
+import MyCirtificate from './student/MyCirtificate';
+import Transaction from './teacher/Transaction';
+import PaymentSuccess from './payment/PaymentSuccess';
 
 
 
@@ -61,10 +65,16 @@ function Main() {
        
         <Route path='/whishlist' element={<RequireAuth><WhishList/></RequireAuth>}></Route>
         <Route path='/mychapter/:course_id/' element={<RequireAuth><MyChapters/></RequireAuth>}></Route>
+        <Route path='/myassingment/:course_id/' element={<RequireAuth><MyAssignment/></RequireAuth>}></Route>
+        <Route path='/mycirtificate/' element={<RequireAuth><MyCirtificate/></RequireAuth>}></Route>
+
         <Route path='/mylearnig' element={<RequireAuth><MyCourseDetail/></RequireAuth>}></Route>
 
+        {/* <Route path='/courses' element={<RequireAuth><CoursesPage/></RequireAuth>}></Route> */}
         <Route path='/courses' element={<RequireAuth><CoursesPage/></RequireAuth>}></Route>
         <Route path='/payment' element={<RequireAuth><Payment/></RequireAuth>}></Route>
+        <Route path='/payment/success' element={<RequireAuth><PaymentSuccess/></RequireAuth>}></Route>
+
         
 
         {/* user_routes */}
