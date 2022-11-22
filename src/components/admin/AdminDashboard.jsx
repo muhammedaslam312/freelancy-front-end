@@ -1,132 +1,20 @@
-// import axios from 'axios'
-// import React, { useEffect, useState } from 'react'
-// import { useContext } from 'react'
-// import { Link } from 'react-router-dom'
-
-// import {Routes as Switch,Route } from 'react-router-dom'
-// import BaseUrl from '../../BaseUrl'
-// import AuthContext from '../../context/AuthContext'
-// import Theader from './Theader'
-
-// import TeacherSidebar from './TeacherSidebar'
-
-// function TeacherDashboard() {
-//   const {teacher} = useContext(AuthContext)
-//   const [dashboard,setDashboard]=useState([]);
-//   useEffect(()=>{
-//     try{
-//       const TeacherToken = JSON.parse(localStorage.getItem('teacherToken')).token
-//       axios.get(BaseUrl+'teacher_dashboard/'+teacher.teacher_id+'/',{
-//         headers:{"Authorization" : `Bearer ${TeacherToken}`}
-//     }).then((res)=>{
-//         console.log(res);
-//         setDashboard(res.data)
-        
-        
-
-//       });
-//     }catch(error){
-//       console.log(error)
-//     }
-//   },[])
-//   console.log(dashboard);
-//   return (
-//     <div>
-//       <Theader/>
-//     <div className='container mt-4'>
-//       <div className='row'>
-//         <aside className='col-md-3'>
-//           <TeacherSidebar/>
-
-//         </aside>
-//         <section className='col-md-9'>
-//           <div className="row">
-//             <div className="col-md-4">
-//               <div className="card border-primary">
-//                 <h5 className="card-header bg-success text-white">Total Courses</h5>
-//                 <div className="card-body">
-//                   <h3><Link to='/teacher/courses'>{dashboard.total_courses}</Link></h3>
-//                 </div>
-
-//               </div>
-//             </div>
-//             <div className="col-md-4">
-//               <div className="card border-primary">
-//                 <h5 className="card-header bg-success text-white">Total Students</h5>
-//                 <div className="card-body">
-//                   <h3><Link to='/teacher/mystudent'>{dashboard.total_students}</Link></h3>
-//                 </div>
-
-//               </div>
-//             </div>
-//             <div className="col-md-4">
-//               <div className="card border-primary">
-//                 <h5 className="card-header bg-success text-white">Total Amount</h5>
-//                 <div className="card-body">
-//                   <p>total amount</p>
-                  
-
-//                 </div>
-
-//               </div>
-//             </div>
-            
-//           </div>
-          
-
-          
-//         </section>
-
-//       </div>
-//     </div>
-//     <div>
-      
-//     </div>
-//     </div>
-
-//   )
-// }
-
-// export default TeacherDashboard
-
-
-import React, { useContext, useEffect, useState } from 'react'
-
+import React, { useState } from 'react'
+import AdminHeader from './AdminHeader'
+import AdminSidebar from './AdminSidebar'
 
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import TeacherSidebar from './TeacherSidebar';
-import Theader from './Theader';
-import AuthContext from '../../context/AuthContext';
-import { getAllTeacherEntrollCourse } from '../../teacher_axios/teacher_axios';
-import axios from 'axios';
-import BaseUrl from '../../BaseUrl';
-import { Link } from 'react-router-dom';
+import { getAllEntrollCourse } from '../../admin_axios/axios';
+import { useEffect } from 'react';
 
-function TeacherDashboard() {
-    
-    const {teacher} =useContext(AuthContext)
+function AdminDashboard() {
+
     const [course, setCourse] = useState([]);
-    const [dashboard,setDashboard]=useState([]);
 
     useEffect(()=>{
-        getAllTeacherEntrollCourse(teacher.teacher_id).then((course)=>{
+        getAllEntrollCourse().then((course)=>{
             setCourse(course)
             
         })
-        try{
-                   const TeacherToken = JSON.parse(localStorage.getItem('teacherToken')).token
-                   axios.get(BaseUrl+'teacher_dashboard/'+teacher.teacher_id+'/',{
-                     headers:{"Authorization" : `Bearer ${TeacherToken}`}
-                 }).then((res)=>{
-                    console.log(res);
-                   setDashboard(res.data)
-                    
-                    
-            
-                  });
-                 }catch(error){
-                 console.log(error)
-                 }
         
 
     },[])
@@ -135,12 +23,12 @@ function TeacherDashboard() {
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'student', headerName: 'Student name', width: 130 },
     { field: 'course', headerName: 'Course name', width: 130 },
-    
+    { field: 'teacher', headerName: 'Teacher name', width: 130 },
     {
       field: 'order_amount',
       headerName: 'price',
       type: 'number',
-      width: 90,
+      width: 130,
     },
     {
         field: 'admin_commition',
@@ -151,15 +39,25 @@ function TeacherDashboard() {
     
   ];
   
-  
+//   const rows = [
+//     { id: 1, Student: 'Snow', Course: 'Jon',Teacher: 'Jon', price: 35 },
+//     { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
+//     { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
+//     { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
+//     { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
+//     { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
+//     { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
+//     { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
+//     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+//   ];
   
   return (
     <div>
-      <Theader/>
+      <AdminHeader/>
         <div className='container mt-4'>
             <div className='row'>
                 <aside className='col-md-3'>
-                <TeacherSidebar/>
+                <AdminSidebar/>
 
                 </aside>
                 <section className='col-md-9'>
@@ -173,7 +71,7 @@ function TeacherDashboard() {
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Total Earnings </div>
+                                                Earnings (Monthly)</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
                                         </div>
                                         
@@ -189,7 +87,7 @@ function TeacherDashboard() {
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Admin Earnings </div>
+                                                Earnings (Annual)</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
                                         </div>
                                         
@@ -205,14 +103,18 @@ function TeacherDashboard() {
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Courses
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
                                             </div>
-                                            
                                             <div class="row no-gutters align-items-center">
-                                                
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><Link to='/teacher/courses'>{dashboard.total_courses}</Link></div>
-                                                
-                                                
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="progress progress-sm mr-2">
+                                                        <div class="progress-bar bg-info" role="progressbar"
+                                                            ></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         
@@ -228,9 +130,8 @@ function TeacherDashboard() {
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Total Students</div>
-                                                
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><Link to='/teacher/mystudent'>{dashboard.total_students}</Link></div>
+                                                Pending Requests</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                                         </div>
                                        
                                     </div>
@@ -285,4 +186,4 @@ function TeacherDashboard() {
   )
 }
 
-export default TeacherDashboard
+export default AdminDashboard

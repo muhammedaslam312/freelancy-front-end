@@ -19,7 +19,7 @@ function CourseSlidebar() {
       <div className="navbar-nav ">
       <Link to={`/mychapter/${courseId}/`} className="nav-link  fw-bold h3" aria-current="page" >Chapter</Link>
       <Link to={`/myassingment/${courseId}/`} className="nav-link  fw-bold h3" aria-current="page" >Assigments</Link>
-      {/* <Link to='/user/dashboard' className="nav-link  fw-bold" aria-current="page" >Cirtificate</Link> */}
+      <Link to={`/mycirtificate/${courseId}/`} className="nav-link  fw-bold" aria-current="page" >Cirtificate</Link> 
         
        
       </div>

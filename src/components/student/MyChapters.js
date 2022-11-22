@@ -19,6 +19,7 @@ function MyChapters() {
 
     const [chapters,setChapter] =useState([]);
     const [video,setVideo] =useState('');
+    const [active, setActive] = useState(null)
     console.log(video)
     
 
@@ -61,7 +62,7 @@ console.log(video);
                 { chapters &&
           chapters.map((chapter,index)=>{
             return (
-                <a key={index}   class="list-group-item listClass" type='button' style={{textAlign:'left'}} onClick={()=>{setVideo(imageFolder+chapter.video);}}>{chapter.title} <span className='mx-5 float-end'>30 minute</span> </a>
+                <a key={index}   className={`list-group-item ${active == chapter && 'active'}`} type='button' style={{textAlign:'left'}} onClick={()=>{setVideo(imageFolder+chapter.video);setActive(chapter)} }>{chapter.title} <span className='mx-5 float-end'>30 minute</span> </a>
                
                 )
             })

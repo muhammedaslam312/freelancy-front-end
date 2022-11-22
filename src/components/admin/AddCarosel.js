@@ -7,11 +7,11 @@ import AdminHeader from './AdminHeader';
 import AdminSidebar from './AdminSidebar';
 
 
-function AddCategory() {
+function AddCarosel() {
 
     const {user} = useContext(AuthContext)
     
-    const [courseCategory, setCourseCategory] = useState({});
+    const [carosel, setCarosel] = useState({});
 
 
     useEffect(()=>{
@@ -20,30 +20,33 @@ function AddCategory() {
     },[])
 
     const handleChange = ((event)=>{
-        setCourseCategory({
-            ...courseCategory,[event.target.name] :event.target.value
+        setCarosel({
+            ...carosel,[event.target.name] :event.target.value
         })
     })
    
+    const handleFileChange = ((event)=>{
+        setCarosel({
+            ...carosel,[event.target.name] : event.target.files[0]
+        })
+    
+    })
 
     const handleSubmit = ((event)=>{
         event.preventDefault();
-        const UserToken=JSON.parse(localStorage.getItem('authToken')).token
+        const UserToken=JSON.parse(localStorage.getItem('authToken')).access
         console.log(UserToken)
-        console.log(courseCategory)
+        
        
 
         const form_Data = new FormData();
           
-          form_Data.append('title',courseCategory.title);
-          form_Data.append('description',courseCategory.discription);
-          
-         
-        
-          console.log(courseCategory)  
-          console.log("========")
+          form_Data.append('title',carosel.title);
+          form_Data.append('image',carosel.image);   
 
-        axios.post(BaseUrl+'admin/addcategory/',form_Data,
+        axios.post(BaseUrl+'addcarosel/',form_Data, { headers: {"Authorization" : `Bearer ${UserToken}`,
+        'Content-Type': 'multipart/form-data' 
+        } }
         ).then((response)=>{
             console.log(response.data)
             console.log("Category added successfully");
@@ -84,9 +87,10 @@ function AddCategory() {
                                 <input type="text"id='title' onChange={handleChange} name='title' className="form-control" />
                             </div>
                             <div className="mb-3">
-                                <label for='description' className="form-label">Description</label>
-                                <textarea type="text" onChange={handleChange} name='description' id='discription' className="form-control" ></textarea> 
+                                <label for='file' className="form-label">Carosel File</label>
+                                <input type="file"id='image' name="image" onChange={handleFileChange} className="form-control" />
                             </div>
+                           
                            
                             
                             <button type='sumbit' onClick={handleSubmit} className="btn btn-primary">Submit</button>
@@ -104,4 +108,4 @@ function AddCategory() {
   )
 }
 
-export default AddCategory
+export default AddCarosel

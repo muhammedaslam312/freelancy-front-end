@@ -9,6 +9,8 @@ function MyStudents() {
     const {teacher} = useContext(AuthContext)
 
     const [entrollStudent, setEntrollStudent] = useState([]);
+    const [active, setActive] = useState(null)
+
     
   
     useEffect(()=>{
@@ -29,6 +31,7 @@ function MyStudents() {
 
     
     console.log('uygj');  
+    
 
 
     // console.log(students);
@@ -59,7 +62,8 @@ function MyStudents() {
       <tbody>
       {entrollStudent.map((entroll,index)=>{
                    return(
-                   <tr key={index}>
+                   <tr key={index} onClick={() => setActive(entroll)}
+                   className={`table-${active == entroll && 'active'}`}>
                     <th scope="row">{index+1}</th>
                     <td>{entroll.student.username}</td>
                     
@@ -67,6 +71,7 @@ function MyStudents() {
                     <td>{entroll.course.title}</td>
                     <td>
                       <Link to={`assignments/${entroll.student.id}/${entroll.course.id}/`} className='btn btn-sm btn-warning'>Assignments</Link>
+                      <Link to={`assignments/answer/${entroll.student.id}/${entroll.course.id}/`} className='btn btn-sm btn-warning ms-2'>Assignments Answer</Link>
                       <Link to={`add_assignment/${entroll.student.id}/${entroll.course.id}/`} className='btn btn-sm btn-success ms-2'>Add Assignment</Link>
                     </td>
                     
@@ -84,6 +89,7 @@ function MyStudents() {
     
     </div>
     </div>
+    
     </div>
   )
 }

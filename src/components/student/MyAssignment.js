@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import BaseUrl, { imageFolder } from '../../BaseUrl';
 import AuthContext from '../../context/AuthContext';
-import { getUserAssigments } from '../../user_axios/user_axios';
+import { getUserAssigments, postCompleteAssigmentStatus } from '../../user_axios/user_axios';
 import Head from '../home/Head';
 import CourseSlidebar from './CourseSlidebar';
 import Swal from 'sweetalert2'
@@ -19,6 +19,7 @@ function MyAssignment() {
     const [assigmentId, setAssignmentId] = useState('');
     const [answer,setAnswer]= useState({'assingment':`${assigmentId}`})
     const [load,setload] = useState(false)
+    const [completeResponse,setCompleteResponse] = useState(false)
 
     const handleChange = ((event)=>{
         setAnswer({
@@ -82,6 +83,10 @@ function MyAssignment() {
         setCourseId(items);
         }
       
+        postCompleteAssigmentStatus(user_id,course_id).then((res)=>{
+          setCompleteResponse(res)
+          
+        })
   
   
   
@@ -115,7 +120,7 @@ function MyAssignment() {
                     <th scope="row">{index}</th>
                     <th >{assigment.title}</th>
                     
-                    <td><p>Open a PDF file <a href={imageFolder+assigment.file} download>Open</a></p></td>
+                    <td><p>Open a PDF file <a href={imageFolder+assigment.file} target='_blank' rel='noopener noreferrer'>Open</a></p></td>
                     
                      <td>
                      {assigment.is_submitted===true ?

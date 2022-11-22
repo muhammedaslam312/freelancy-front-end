@@ -1,22 +1,21 @@
 import React, { useEffect,useState } from 'react'
 import { Link } from 'react-router-dom';
-import { getAllAdminCategories, removeCategory } from '../../admin_axios/axios';
+import { getAllAdminCarosel, getAllAdminCategories, removeCarosel, removeCategory } from '../../admin_axios/axios';
+import Carosel from '../home/Carosel';
 import AdminHeader from './AdminHeader';
 import AdminSidebar from './AdminSidebar'
 
-function AdminCategory() {
+function AdminCarosel() {
 
-    const [categories, setCategories] = useState([]);
+    const [carosel, setCarosel] = useState([]);
     const [load,setLoad] = useState(false)
 
     useEffect(()=>{
         
 
-        getAllAdminCategories().then((categories)=>{
-            setCategories(categories)
-            categories.forEach((category)=>{
-                console.log(category.title);
-            })
+        getAllAdminCarosel().then((carosel)=>{
+            setCarosel(carosel)
+            
         })
         
 
@@ -41,19 +40,23 @@ function AdminCategory() {
                         <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
+                        <th scope="col">status</th>
                        
                         <th scope="col">Action</th>
-                        <th scope="col"><Link to='addcategory/' ><button className=" btn btn-outline-info ">Add Category</button></Link></th>
+                        <th scope="col"><Link to='admin/addcarosel/' ><button className=" btn btn-outline-info ">Add Carosel</button></Link></th>
                         </tr>
                     </thead>
                     <tbody>
-                    {categories.map((category,index)=>{
+                    {carosel.map((carosel,index)=>{
                                         return(
                                             <tr key={index}>
                                             <th scope="row">{index}</th>
-                                            <td>{category.title}</td>
+                                            <td>{carosel.title}</td>
+                                            <td>{carosel.is_active ?
+                                            <p>active</p>:
+                                            <p>not active</p>}</td>
                                             
-                                            <td><button className=" btn btn-outline-danger " onClick={()=>{removeCategory(category.id);setLoad(!load)}}>Delete</button></td>
+                                            <td><button className=" btn btn-outline-danger " onClick={()=>{removeCarosel(carosel.id);setLoad(!load)}}>Delete</button></td>
                                             </tr>)
                                             
                                         
@@ -72,4 +75,4 @@ function AdminCategory() {
   )
 }
 
-export default AdminCategory
+export default AdminCarosel

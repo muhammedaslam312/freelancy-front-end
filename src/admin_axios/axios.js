@@ -89,3 +89,74 @@ export const getAllAdminCategories = ()=>{
         })
 }
 
+export const getAllAdminCarosel = ()=>{
+
+    return new Promise((resolve,reject)=>{
+        const AdminToken = JSON.parse(localStorage.getItem('authToken')).access
+        console.log(AdminToken)
+        axios.get(BaseUrl+'allcarosel/',{
+            headers:{"Authorization" : `Bearer ${AdminToken}`}
+        }).then((response)=>{
+            console.log(response.data);
+            console.log("getAllcarosel Axios working");
+            resolve(response.data)
+        }).catch((err) => {
+            console.log("getAllcategories Axios Not working");
+            reject(err)
+         })
+        })
+}
+
+export const removeCarosel = (carosel_id)=>{
+
+    return new Promise((resolve,reject)=>{
+        const UserToken = JSON.parse(localStorage.getItem('authToken')).access
+        console.log(UserToken)
+        axios.delete(BaseUrl+'deletecarosel/'+carosel_id+'/',{
+            headers:{"Authorization" : `Bearer ${UserToken}`}
+        }).then((response)=>{
+            console.log(response.data);
+            console.log("delete Axios working");
+            resolve(response.data)
+        }).catch((err) => {
+            console.log("delete Axios Not working");
+            reject(err)
+         })
+        })
+}
+
+export const removeCategory = (cat_id)=>{
+
+    return new Promise((resolve,reject)=>{
+        const UserToken = JSON.parse(localStorage.getItem('authToken')).access
+        console.log(UserToken)
+        axios.delete(BaseUrl+'admin/deletecategory/'+cat_id+'/',{
+            headers:{"Authorization" : `Bearer ${UserToken}`}
+        }).then((response)=>{
+            console.log(response.data);
+            console.log("delete Axios working");
+            resolve(response.data)
+        }).catch((err) => {
+            console.log("delete Axios Not working");
+            reject(err)
+         })
+        })
+}
+
+export const getAllEntrollCourse = ()=>{
+
+    return new Promise((resolve,reject)=>{
+        const AdminToken = JSON.parse(localStorage.getItem('authToken')).access
+        console.log(AdminToken)
+        axios.get(BaseUrl+'getentrolled/',{
+            headers:{"Authorization" : `Bearer ${AdminToken}`}
+        }).then((response)=>{
+            console.log(response.data);
+            console.log("getAllcategories Axios working");
+            resolve(response.data)
+        }).catch((err) => {
+            console.log("getAllcategories Axios Not working");
+            reject(err)
+         })
+        })
+}

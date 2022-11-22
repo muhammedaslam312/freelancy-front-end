@@ -70,10 +70,12 @@ function AdminSidebar() {
         </div>
         </aside> */} 
         <div className="list-group list-group-flush">
-            <Link to='/admin/dashbord' className="list-group-item list-group-item-action">Dashboard</Link>
+            <Link to='/admin/dashboard' className="list-group-item list-group-item-action">Dashboard</Link>
             <Link to="/admin/users" className="list-group-item list-group-item-action">Users</Link>
-            <Link to='/admin/teachers' className="list-group-item list-group-item-action">Courses</Link>
+            <Link to='/admin/teachers' className="list-group-item list-group-item-action">Teachers</Link>
             <Link to='/admin/category' className="list-group-item list-group-item-action">Category</Link>
+            
+            <Link to='/admin/carosel/' className="list-group-item list-group-item-action">Carosel</Link>
             <p onClick={logOutUser} className="list-group-item list-group-item-action text-danger">Log Out</p>
             
         </div>

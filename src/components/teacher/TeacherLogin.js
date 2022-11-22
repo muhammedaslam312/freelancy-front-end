@@ -55,23 +55,12 @@ console.log(teacherError);
             
           <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
           
-            <p class="lead fw-normal mb-0 me-3">Sign in with</p>
+           
 
-            <button type="button" class="btn btn-primary btn-floating mx-1">
-              <i class="fab fa-facebook-f"></i>
-            </button>
-
-            <button type="button" class="btn btn-primary btn-floating mx-1">
-              <i class="fab fa-twitter"></i>
-            </button>
-
-            <button type="button" class="btn btn-primary btn-floating mx-1">
-              <i class="fab fa-linkedin-in"></i>
-            </button>
+            
           </div>
 
           <div class="divider d-flex align-items-center my-4">
-            <p class="text-center fw-bold mx-3 mb-0">Or</p>
           </div>
 
           {/* <!-- Email input --> */}

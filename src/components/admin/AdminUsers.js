@@ -2,6 +2,7 @@ import userEvent from '@testing-library/user-event'
 import React, { useEffect,useState } from 'react'
 
 import { blockUser,getAllusers } from '../../admin_axios/axios';
+import AdminHeader from './AdminHeader';
 
 import AdminSidebar from './AdminSidebar'
 
@@ -26,7 +27,7 @@ function AdminUsers() {
     },[status])
   return (
     <div>
-        <thead/>
+        <AdminHeader/>
         <div className='container mt-4'>
             <div className='row'>
                 <aside className='col-md-3'>

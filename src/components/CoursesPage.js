@@ -7,6 +7,7 @@ import AuthContext from '../context/AuthContext';
 
 import { getAllLatestCourse} from '../user_axios/user_axios';
 import './CoursePage.css'
+import Pagination from './Pagination';
 
 
 function CoursesPage() {
@@ -16,6 +17,9 @@ function CoursesPage() {
     let {user,search} = useContext(AuthContext)
     // const s=search
     const [course,setCourse] =useState([]);
+
+    const [currentPage,setCurrentPage] =useState(1);
+    const [postsPerPage,setPostPerPage] = useState(4)
     
   // const [latestCourses, setLatestCourses] = useState([]);
   const [filterCourse,setFilterCourse] = useState([]);
@@ -46,6 +50,11 @@ function CoursesPage() {
 
   },[search])
   console.log(search);
+
+  const lastPostIndex  = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex- postsPerPage
+  const currentPosts = course.slice(firstPostIndex,lastPostIndex)
+
 
   return (
     <div>
@@ -89,7 +98,7 @@ filterCourse.map((course,index)=>{
             )
           })
           :
-          course.map((course,index)=>{
+          currentPosts.map((course,index)=>{
             return (
               <div className=" col-12 col-md-6 col-lg-3 mt-4  " key={index}>
               <div className=" m-auto" style={{ width: "18rem" }}>
@@ -121,6 +130,12 @@ filterCourse.map((course,index)=>{
                 </div>
             </div>
         </section>
+        <Pagination totalPosts={course.length} 
+        postsPerPage={postsPerPage}
+        setCurrentPage={setCurrentPage}
+        currentPage = {currentPage}
+
+        />
     </div>
   )
 }

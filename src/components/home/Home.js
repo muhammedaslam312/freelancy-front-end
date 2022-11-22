@@ -1,11 +1,11 @@
 import React, { useState,useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom';
-import { imageFolder } from '../BaseUrl';
-import AuthContext from '../context/AuthContext';
-import { getAllLatestCourse, getAllRecomentedCourse } from '../user_axios/user_axios';
-import Carosel from './home/Carosel';
-import Head from './home/Head';
-import '../components/css/home.css'
+import { imageFolder } from '../../BaseUrl';
+import AuthContext from '../../context/AuthContext';
+import { getAllLatestCourse, getAllRecomentedCourse } from '../../user_axios/user_axios';
+import Carosel from './Carosel';
+import Head from './Head';
+import '../css/home.css'
 function Home() {
 
   let {user} = useContext(AuthContext)

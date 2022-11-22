@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import Home from './Home';
+
 import Footer from './home/Footer';
 
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
@@ -45,6 +45,11 @@ import MyAssignment from './student/MyAssignment';
 import MyCirtificate from './student/MyCirtificate';
 import Transaction from './teacher/Transaction';
 import PaymentSuccess from './payment/PaymentSuccess';
+import Home from './home/Home';
+import AddCarosel from './admin/AddCarosel';
+import Carosel from './home/Carosel';
+import AdminCarosel from './admin/AdminCarosel';
+import AssignmentAnswer from './teacher/AssignmentAnswer';
 
 
 
@@ -66,7 +71,7 @@ function Main() {
         <Route path='/whishlist' element={<RequireAuth><WhishList/></RequireAuth>}></Route>
         <Route path='/mychapter/:course_id/' element={<RequireAuth><MyChapters/></RequireAuth>}></Route>
         <Route path='/myassingment/:course_id/' element={<RequireAuth><MyAssignment/></RequireAuth>}></Route>
-        <Route path='/mycirtificate/' element={<RequireAuth><MyCirtificate/></RequireAuth>}></Route>
+        <Route path='/mycirtificate/:course_id/' element={<RequireAuth><MyCirtificate/></RequireAuth>}></Route>
 
         <Route path='/mylearnig' element={<RequireAuth><MyCourseDetail/></RequireAuth>}></Route>
 
@@ -84,6 +89,7 @@ function Main() {
         <Route path='/user/otp' element={<OtpVerification/>}></Route>
         <Route path='/user/my_courses' element={<RequireAuth><MyCourseDetail/></RequireAuth>}></Route>
         <Route path='/user/assignment' element={<RequireAuth><UserAssignment/></RequireAuth>}></Route>
+        {/* <Route path='/user/cirtificate' element={<RequireAuth><MyCirtificate/></RequireAuth>}></Route> */}
 
         {/* <Route path='/my-courses' element={<MyCourses/>}></Route> */}
         <Route path='/my-courses' element={<RequireAuth><MyCourses/></RequireAuth>}></Route>
@@ -103,6 +109,7 @@ function Main() {
         <Route path='/teacher/mystudent' element={<MyStudents/>}></Route>
         <Route path='teacher/mystudent/add_assignment/:student_id/:course_id/' element={<AddAssignment/>}></Route>
         <Route path='teacher/mystudent/assignments/:student_id/:course_id/' element={<Assignments/>}></Route>
+        <Route path='teacher/mystudent/assignments/answer/:student_id/:course_id/' element={<AssignmentAnswer/>}></Route>
         
 
         {/* admin */}
@@ -112,6 +119,9 @@ function Main() {
         <Route path="/admin/teachers" element={<AdminAuth><AdminTeachers/></AdminAuth>}></Route>
         <Route path="/admin/category" element={<AdminAuth><AdminCategory/></AdminAuth>}></Route>
         <Route path="/admin/category/addcategory/" element={<AdminAuth><AddCategory/></AdminAuth>}></Route>
+        <Route path="/admin/addcarosel/" element={<AdminAuth><AddCarosel/></AdminAuth>}></Route>
+        <Route path="/admin/carosel/" element={<AdminAuth><AdminCarosel/></AdminAuth>}></Route>
+
 
 
       </Routes>

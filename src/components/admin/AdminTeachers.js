@@ -1,6 +1,9 @@
 import userEvent from '@testing-library/user-event'
 import React, { useEffect,useState } from 'react'
 import { verifyTeacher,getAllteachers } from '../../admin_axios/axios'
+import Head from '../home/Head'
+import Theader from '../teacher/Theader'
+import AdminHeader from './AdminHeader'
 
 import AdminSidebar from './AdminSidebar'
 
@@ -26,7 +29,7 @@ function AdminTeachers() {
     },[status])
   return (
     <div>
-        <thead/>
+        <AdminHeader/>
         
         <div className='container mt-4'>
             <div className='row'>

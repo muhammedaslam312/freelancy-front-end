@@ -6,12 +6,17 @@ import { imageFolder } from '../../BaseUrl';
 
 import TeacherSidebar from './TeacherSidebar'
 import Theader from './Theader';
+import Pagination from '../Pagination';
+
 
 function TeacherCourses() {
   const {teacher} = useContext(AuthContext)
 
   const [courses, setCourses] = useState([]);
+  const [active, setActive] = useState(null)
  
+  const [currentPage,setCurrentPage] =useState(1);
+  const [postsPerPage,setPostPerPage] = useState(8)
 
 
   useEffect(()=>{
@@ -27,6 +32,10 @@ function TeacherCourses() {
 
 
   },[])
+
+    const lastPostIndex  = currentPage * postsPerPage;
+    const firstPostIndex = lastPostIndex- postsPerPage
+    const currentPosts = courses.slice(firstPostIndex,lastPostIndex)
   return (
     <div>
 <Theader/>
@@ -51,9 +60,10 @@ function TeacherCourses() {
     </tr>
   </thead>
   <tbody>
-  {courses.map((course,index)=>{
+  {currentPosts.map((course,index)=>{
                return(
-               <tr key={index}>
+               <tr key={index} onClick={() => setActive(course)}
+               className={`table-${active == course && 'active'}`}  >
                 <th scope="row">{index+1}</th>
                 <td>{course.title}</td>
                 
@@ -66,14 +76,21 @@ function TeacherCourses() {
                )
        })}
    
-    
+   
   </tbody>
+  
 </table>
-    
+<Pagination totalPosts={courses.length} 
+        postsPerPage={postsPerPage}
+        setCurrentPage={setCurrentPage}
+        currentPage = {currentPage}
+
+        />
   </section>
 
 </div>
 </div>
+
 </div>
   )
 }

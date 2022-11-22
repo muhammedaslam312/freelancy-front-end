@@ -108,3 +108,38 @@ export const getAssigments = (course_id,student_id)=>{
          })
         })
 }
+export const getAssigmentsAnswer = (course_id,student_id)=>{
+
+    return new Promise((resolve,reject)=>{
+        const TeacherToken = JSON.parse(localStorage.getItem('teacherToken')).token
+        console.log(TeacherToken)
+        axios.get(BaseUrl+'assignment/answer/'+course_id+'/'+student_id+'/',{
+            headers:{"Authorization" : `Bearer ${TeacherToken}`}
+        }).then((response)=>{
+            console.log(response.data);
+            console.log("Entrolled_student Axios working");
+            resolve(response.data)
+        }).catch((err) => {
+            console.log("Entrolled Axios Not working");
+            reject(err)
+         })
+        })
+}
+
+export const getAllTeacherEntrollCourse = (teacher_id)=>{
+
+    return new Promise((resolve,reject)=>{
+        const TeacherToken = JSON.parse(localStorage.getItem('teacherToken')).token
+        console.log(TeacherToken)
+        axios.get(BaseUrl+'teacher/getentrolled/'+teacher_id+'/',{
+            headers:{"Authorization" : `Bearer ${TeacherToken}`}
+        }).then((response)=>{
+            console.log(response.data);
+            console.log("getAllc Axios working");
+            resolve(response.data)
+        }).catch((err) => {
+            console.log("getAllc Axios Not working");
+            reject(err)
+         })
+        })
+}
