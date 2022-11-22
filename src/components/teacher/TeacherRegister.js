@@ -5,7 +5,7 @@ import Theader from './Theader';
 
 function TeacherRegister() {
 
-  const baseUrl='http://127.0.0.1:8000/api/teacher/'
+  const baseUrl='http://13.127.213.100/api/teacher/'
   const [teacherData,setteacherData]=useState({
     'full_name':'',
     'email':'',
@@ -60,7 +60,7 @@ function TeacherRegister() {
 
 
   return (
-    <div>
+    <div >
       <Theader/>
       
       <section class="vh-100">

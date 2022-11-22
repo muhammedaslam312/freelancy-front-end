@@ -41,7 +41,7 @@ function MyChapters() {
 console.log(chapters);
 console.log(video);
   return (
-    <div >
+    <div style={{minHeight:'100vh'}} >
         <Head/>
         <CourseSlidebar data={user_id}/>
         <div className="container">

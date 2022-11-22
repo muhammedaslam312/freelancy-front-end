@@ -6,7 +6,7 @@ function RecomendedCourses() {
   return (
     
 
-<div className='container mt-4'>
+<div className='container mt-4' style={{minHeight:'100vh'}} >
 <div className='row'>
   <aside className='col-md-3'>
     <Sidebar/>

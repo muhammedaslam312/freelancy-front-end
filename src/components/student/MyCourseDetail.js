@@ -30,7 +30,7 @@ function MyCourseDetail() {
     console.log(user.user_id);
 
   return (
-    <div >
+    <div style={{minHeight:'100vh'}}>
         <Head/>
         
         <div className="container my-5">

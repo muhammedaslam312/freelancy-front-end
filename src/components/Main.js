@@ -119,7 +119,7 @@ function Main() {
         <Route path="/admin/teachers" element={<AdminAuth><AdminTeachers/></AdminAuth>}></Route>
         <Route path="/admin/category" element={<AdminAuth><AdminCategory/></AdminAuth>}></Route>
         <Route path="/admin/category/addcategory/" element={<AdminAuth><AddCategory/></AdminAuth>}></Route>
-        <Route path="/admin/addcarosel/" element={<AdminAuth><AddCarosel/></AdminAuth>}></Route>
+        <Route path="/admin/carosel/addcarosel/" element={<AdminAuth><AddCarosel/></AdminAuth>}></Route>
         <Route path="/admin/carosel/" element={<AdminAuth><AdminCarosel/></AdminAuth>}></Route>
 
 

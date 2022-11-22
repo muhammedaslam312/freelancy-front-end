@@ -7,7 +7,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 function Theader() {
     const {user,teacher,logOutUser,logOutTeacher} = useContext(AuthContext)
   return (
-    <div>
+    <div >
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className='container'>
   <a className="navbar-brand " href="#">Freelancy</a>

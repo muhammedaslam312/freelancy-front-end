@@ -6,7 +6,7 @@ import Sidebar from './Sidebar'
 function FavoriteCourses() {
   return (
     
-<div>
+<div style={{minHeight:'100vh'}}>
   <Head/>
 
 <div className='container mt-4'>

@@ -23,7 +23,7 @@ function AdminCarosel() {
 
 
   return (
-    <div>
+    <div style={{minHeight:'100vh'}}>
         <AdminHeader/>
 
         <div className='container mt-4'>
@@ -43,7 +43,7 @@ function AdminCarosel() {
                         <th scope="col">status</th>
                        
                         <th scope="col">Action</th>
-                        <th scope="col"><Link to='admin/addcarosel/' ><button className=" btn btn-outline-info ">Add Carosel</button></Link></th>
+                        <th scope="col"><Link to='addcarosel/' ><button className=" btn btn-outline-info ">Add Carosel</button></Link></th>
                         </tr>
                     </thead>
                     <tbody>

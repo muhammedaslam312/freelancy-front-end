@@ -184,7 +184,7 @@ function CourseDetail() {
 
   return (
 
-    <div>
+    <div style={{minHeight:'100vh'}}>
       <Head />
       <div className="container mt-5">
         {courseDetail.map((course, index) => {

@@ -82,7 +82,7 @@ function Sidebar() {
 </aside> */}
 
 <div className="list-group list-group-flush">
-            <Link to='/user/dashboard' className="list-group-item list-group-item-action">Dashboard</Link>
+            {/* <Link to='/user/dashboard' className="list-group-item list-group-item-action">Dashboard</Link> */}
             <Link to="/my-courses" className="list-group-item list-group-item-action">My Courses</Link>
             {/* <Link to='/favorite-courses' className="list-group-item list-group-item-action">Favorite Courses</Link> */}
             <Link to='/user/cirtificate' className="list-group-item list-group-item-action">Assigments</Link>

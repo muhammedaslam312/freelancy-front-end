@@ -94,7 +94,7 @@ function MyAssignment() {
     },[load])
     console.log(assigmentId);
   return (
-    <div>
+    <div style={{minHeight:'100vh'}}>
         <Head/>
         <CourseSlidebar/>
         <section className='col-md-9 my-3 container'>

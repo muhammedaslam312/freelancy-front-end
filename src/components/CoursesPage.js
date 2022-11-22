@@ -57,7 +57,7 @@ function CoursesPage() {
 
 
   return (
-    <div>
+    <div style={{minHeight:'100vh'}}>
         <Head />
       <section class="new-product-area section-padding30">
             <div class="container my-5">

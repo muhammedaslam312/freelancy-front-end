@@ -37,7 +37,7 @@ function TeacherCourses() {
     const firstPostIndex = lastPostIndex- postsPerPage
     const currentPosts = courses.slice(firstPostIndex,lastPostIndex)
   return (
-    <div>
+    <div style={{minHeight:'100vh'}}>
 <Theader/>
 <div className='container mt-4'>
 <div className='row'>

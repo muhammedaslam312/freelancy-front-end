@@ -48,7 +48,7 @@ function MyCirtificate() {
     console.log(cirtificate);
     console.log(status);
   return (
-    <div>
+    <div style={{minHeight:'100vh'}}>
         <Head/>
         <CourseSlidebar/>
         <section className='col-md-9 my-3 container'>
@@ -75,7 +75,7 @@ function MyCirtificate() {
                     
                     <td>
                       {status && count >0 ? 
-                      <p>Open a PDF file <a href={'http://127.0.0.1:8000'+cirtificate} target='_blank' rel='noopener noreferrer'>Open</a></p>
+                      <p>Open a PDF file <a href={'http://13.127.213.100/'+cirtificate} target='_blank' rel='noopener noreferrer'>Open</a></p>
                         :
                         <p className='text-danger'>You are Not complete</p>
                     }

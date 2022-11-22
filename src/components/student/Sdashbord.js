@@ -7,7 +7,7 @@ import Sidebar from './Sidebar'
 
 function Sdashbord() {
   return (
-    <div>
+    <div style={{minHeight:'100vh'}}>
       <Head/>
     <div className='container mt-4'>
       <div className='row'>
@@ -15,7 +15,7 @@ function Sdashbord() {
           <Sidebar/>
 
         </aside>
-        <section className='col-md-9'>
+        {/* <section className='col-md-9'>
           <div className="row">
             <div className="col-md-4">
               <div className="card border-primary">
@@ -46,7 +46,7 @@ function Sdashbord() {
             </div>
           </div>
           
-        </section>
+        </section> */}
 
       </div>
     </div>

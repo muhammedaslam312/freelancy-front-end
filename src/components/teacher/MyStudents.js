@@ -36,7 +36,7 @@ function MyStudents() {
 
     // console.log(students);
   return (
-    <div>
+    <div style={{minHeight:'100vh'}}>
     <Theader/>
     <div className='container mt-4'>
     <div className='row'>

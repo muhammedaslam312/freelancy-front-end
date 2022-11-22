@@ -24,7 +24,7 @@ function AdminCategory() {
 
 
   return (
-    <div>
+    <div style={{minHeight:'100vh'}}>
         <AdminHeader/>
 
         <div className='container mt-4'>

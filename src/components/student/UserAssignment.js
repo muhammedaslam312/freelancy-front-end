@@ -37,7 +37,7 @@ function UserAssignment() {
 
     // console.log(students);
   return (
-    <div>
+    <div style={{minHeight:'100vh'}}>
     <Head/>
     <div className='container mt-4'>
     <div className='row'>

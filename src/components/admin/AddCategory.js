@@ -65,7 +65,7 @@ function AddCategory() {
 
 
   return (
-    <div>
+    <div style={{minHeight:'100vh'}}>
         <AdminHeader/>
     <div className='container mt-4'>
         <div className='row'>

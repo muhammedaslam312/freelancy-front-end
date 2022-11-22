@@ -82,7 +82,7 @@ function AddCourse() {
         })
     })
   return (
-    <div>
+    <div style={{minHeight:'100vh'}}>
         <Theader/>
     
     <div className='container mt-4'>
