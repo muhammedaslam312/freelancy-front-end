@@ -28,7 +28,7 @@ function AddCategory() {
 
     const handleSubmit = ((event)=>{
         event.preventDefault();
-        const UserToken=JSON.parse(localStorage.getItem('authToken')).token
+        const UserToken=JSON.parse(localStorage.getItem('authToken')).access
         console.log(UserToken)
         console.log(courseCategory)
        
@@ -43,7 +43,9 @@ function AddCategory() {
           console.log(courseCategory)  
           console.log("========")
 
-        axios.post(BaseUrl+'admin/addcategory/',form_Data,
+        axios.post(BaseUrl+'admin/addcategory/',form_Data,{
+            headers:{"Authorization" : `Bearer ${UserToken}`}
+        }
         ).then((response)=>{
             console.log(response.data)
             console.log("Category added successfully");

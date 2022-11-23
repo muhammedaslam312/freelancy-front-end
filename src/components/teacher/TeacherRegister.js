@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
+import BaseUrl from '../../BaseUrl';
 import Theader from './Theader';
 
 function TeacherRegister() {
 
-  const baseUrl='http://13.127.213.100/api/teacher/'
+  const baseUrl=BaseUrl+'teacher/'
   const [teacherData,setteacherData]=useState({
     'full_name':'',
     'email':'',

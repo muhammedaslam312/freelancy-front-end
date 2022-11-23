@@ -50,7 +50,6 @@ function AddChapter() {
         } }).then((response)=>{
             console.log(response.data)
             console.log("Chapter added successfully");
-                        
             Swal.fire({
                 position: 'center',
                 icon: 'success',

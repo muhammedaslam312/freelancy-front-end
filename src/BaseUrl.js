@@ -1,4 +1,4 @@
-const BaseUrl = 'http://13.127.213.100/api/';
-export const imageFolder = 'http://13.127.213.100';
+const BaseUrl = 'https://freelearncy.tk/api/';
+export const imageFolder = 'https://freelearncy.tk';
 
 export default BaseUrl
