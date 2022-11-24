@@ -9,6 +9,8 @@ function OtpVerification() {
     
     const {verifyUser,teacherMobile} =useContext(AuthContext)
     const [otpDetails, setOtpDetails] = useState({mobile:`${teacherMobile}`,code:''});
+    const [error,setError]=useState('')
+    
     const handleChanges=((event)=>{
         setOtpDetails({
           ...otpDetails,[event.target.name] : event.target.value
@@ -23,8 +25,14 @@ function OtpVerification() {
         axios.post(BaseUrl+'user/verify/',otpDetails).then((response) => {
           verifyUser(otpDetails,response)
           
+          
          
-        })
+        }).catch((error) => {
+          console.log(error.response.data.detail);
+          setError(error.response.data.detail);
+          
+          
+        });
     
     
       }
@@ -55,6 +63,7 @@ console.log(teacherMobile);
                 
               </div>
               <button className="btn btn-outline-light btn-lg px-5"  type="submit">Verify</button>
+              {error && <p className='text-danger'>{error}</p>}
 
               
               </form>

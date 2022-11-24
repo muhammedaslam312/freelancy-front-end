@@ -18,6 +18,16 @@ function TeacherRegister() {
 
   });
 
+  //states for form validation
+  const [fullnameErr, setfullnameErr] = useState({})
+  const [emailErr, setEmailErr] = useState({})
+  const [mobileErr, setMobileErr] = useState({})
+  const [passwordErr, setPasswordErr] = useState({})
+  
+  // console.log(fullnameErr);
+  console.log(emailErr);
+  console.log(fullnameErr);
+
   const handleChange =(event)=>{
     setteacherData({
         ...teacherData,
@@ -27,6 +37,9 @@ function TeacherRegister() {
 
   // console.log(teacherData);
   const submitForm =()=>{
+
+    const isValid = formValidation()
+    if (isValid){
     const teacherFormData = new FormData();
     teacherFormData.append("full_name", teacherData.full_name)
     teacherFormData.append("email", teacherData.email)
@@ -57,6 +70,58 @@ function TeacherRegister() {
       })
     }
   };
+}
+
+  //validation of form from frontend
+  const formValidation=()=>{    
+    
+    const usernameErr={}
+    const emailErr={}
+    const mobileErr={}
+    const passwordErr={}
+    let isValid = true
+
+    //firstname validation
+    if (!teacherData.full_name){
+      fullnameErr.short_fname = '*user name is a required field'
+      isValid = false
+    }else if(teacherData.full_name.trim().length <3){
+      fullnameErr.short_fname = '*user name is too short'
+      isValid = false
+    }
+    //email validation
+    if (!teacherData.email){
+
+      emailErr.short_email= '*email is a required field'
+      isValid = false
+    }
+    //mobile validation
+    if (!teacherData.mobile){
+      mobileErr.short_mobile= '*mobile no. is a required field'
+      isValid = false
+    }else if(teacherData.mobile.trim().length != 10){
+      mobileErr.short_mobile= '*enter a valid mobile no.'
+      isValid = false
+    }else if( /^[a-zA-Z()]+$/.test(teacherData.mobile)){
+      mobileErr.short_mobile= '*enter a valid mobile no.'
+      isValid = false
+    }
+    //password validation
+    if(!teacherData.password ){
+      passwordErr.short_password= '*password is a required field'
+      isValid = false
+    }else if(teacherData.password.length <8  ) {
+      passwordErr.short_password= '*minimum 8 characters are required for password'
+      isValid = false
+    }
+    setfullnameErr(fullnameErr)
+    setEmailErr(emailErr)
+    setMobileErr(mobileErr)
+    setPasswordErr(passwordErr)
+
+    return isValid
+
+  }
   
 
 
@@ -83,6 +148,9 @@ function TeacherRegister() {
             onChange={handleChange}
             name='full_name'
               placeholder="Full Name" />
+              {Object.keys(fullnameErr).map((key)=>{
+                return <div style={{color:'red'}} >{fullnameErr[key]}</div>
+              })}
             
           </div>
 
@@ -91,6 +159,9 @@ function TeacherRegister() {
             onChange={handleChange}
             name='email'
               placeholder="Enter a valid email address" />
+              {Object.keys(emailErr).map((key)=>{
+                return <div style={{color:'red'}} >{emailErr[key]}</div>
+              })}
           </div>
 
           <div class="form-outline mb-3">
@@ -98,6 +169,10 @@ function TeacherRegister() {
             onChange={handleChange}
             name='password'
               placeholder="Enter password" />
+              
+               {Object.keys(passwordErr).map((key)=>{
+                return <div style={{color:'red'}} >{passwordErr[key]}</div>
+              })}
             
           </div>
 
@@ -106,6 +181,9 @@ function TeacherRegister() {
             onChange={handleChange}
             name='mobile_no'
               placeholder="Mobile Number" />
+               {Object.keys(mobileErr).map((key)=>{
+                return <div style={{color:'red'}} >{mobileErr[key]}</div>
+              })}
           </div>
 
           <div class="form-outline mb-4">

@@ -10,6 +10,8 @@ function Sregister() {
   
   const {setTeacherMobile} = useContext(AuthContext)
   const navigate =useNavigate()
+  const [emailError,setEmailError]=useState('')
+  const [mobileError,setMobileError]=useState('')
   const [userDetails,setUserDetails] = useState(
     {
     'email':'',
@@ -19,6 +21,14 @@ function Sregister() {
     'interests':'',
     'status':'',}
   );
+
+  //states for form validation
+  const [usernameErr, setusernameErr] = useState({})
+  const [emailErr, setEmailErr] = useState({})
+  const [mobileErr, setMobileErr] = useState({})
+  const [passwordErr, setPasswordErr] = useState({})
+
+  console.log(usernameErr);
 
   const handleChange = (event)=>{
     setUserDetails({
@@ -30,7 +40,9 @@ function Sregister() {
   // console.log(teacherData);
   const submitForm =()=>{
     console.log(userDetails);
-    
+    const isValid = formValidation()
+
+    if (isValid){
     const Form_Data = new FormData();
     Form_Data.append("email", userDetails.email)
     Form_Data.append("username", userDetails.username)
@@ -55,16 +67,75 @@ function Sregister() {
         setTeacherMobile(response.data.mobile)
         navigate('/user/otp')
         
-      })
+      }
+      ).catch((error) => {
+        console.log(error);
+
+        console.log(error.response.data);
+        setEmailError(error.response.data.email);
+        setMobileError(error.response.data.mobile);
+        
+        
+      });
     }catch(error){
       console.log(error);
+      
       setUserDetails({
         'status':'error'
       })
     }
   };
+}
   
+   //validation of form from frontend
+   const formValidation=()=>{    
+    
+    const usernameErr={}
+    const emailErr={}
+    const mobileErr={}
+    const passwordErr={}
+    let isValid = true
 
+    //firstname validation
+    if (!userDetails.username){
+      usernameErr.short_fname = '*user name is a required field'
+      isValid = false
+    }else if(userDetails.username.trim().length <3){
+      usernameErr.short_fname = '*user name is too short'
+      isValid = false
+    }
+    //email validation
+    if (!userDetails.email){
+
+      emailErr.short_email= '*email is a required field'
+      isValid = false
+    }
+    //mobile validation
+    if (!userDetails.mobile){
+      mobileErr.short_mobile= '*mobile no. is a required field'
+      isValid = false
+    }else if(userDetails.mobile.trim().length != 10){
+      mobileErr.short_mobile= '*enter a valid mobile no.'
+      isValid = false
+    }else if( /^[a-zA-Z()]+$/.test(userDetails.mobile)){
+      mobileErr.short_mobile= '*enter a valid mobile no.'
+      isValid = false
+    }
+    //password validation
+    if(!userDetails.password ){
+      passwordErr.short_password= '*password is a required field'
+      isValid = false
+    }else if(userDetails.password.length <8  ) {
+      passwordErr.short_password= '*minimum 8 characters are required for password'
+      isValid = false
+    }
+    setusernameErr(usernameErr)
+    setEmailErr(emailErr)
+    setMobileErr(mobileErr)
+    setPasswordErr(passwordErr)
+
+    return isValid
+  }
 
   return (
     <div>
@@ -86,6 +157,9 @@ function Sregister() {
               placeholder="Full Name"
               name='username'
               onChange={handleChange}/>
+              {Object.keys(usernameErr).map((key)=>{
+                return <div style={{color:'red'}} >{usernameErr[key]}</div>
+              })}
             
           </div>
 
@@ -95,6 +169,9 @@ function Sregister() {
               name='email'
               onChange={handleChange}
               />
+               {Object.keys(emailErr).map((key)=>{
+                return <div style={{color:'red'}} >{emailErr[key]}</div>
+              })}
           </div>
 
           <div class="form-outline mb-4">
@@ -103,6 +180,9 @@ function Sregister() {
               name='mobile'
               onChange={handleChange}
              />
+              {Object.keys(mobileErr).map((key)=>{
+                return <div style={{color:'red'}} >{mobileErr[key]}</div>
+              })}
           </div>
 
           {/* <!-- Password input --> */}
@@ -112,6 +192,9 @@ function Sregister() {
               name='password'
               onChange={handleChange}
                />
+               {Object.keys(passwordErr).map((key)=>{
+                return <div style={{color:'red'}} >{passwordErr[key]}</div>
+              })}
             
           </div>
 
@@ -127,10 +210,8 @@ function Sregister() {
           <div class="d-flex justify-content-between align-items-center">
             {/* <!-- Checkbox --> */}
             <div class="form-check mb-0">
-              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-              <label class="form-check-label" for="form2Example3">
-                Remember me
-              </label>
+            {mobileError && <p className='text-danger'>{mobileError}</p>}
+            {emailError && <p className='text-danger'>{emailError}</p>}
             </div>
             
           </div>

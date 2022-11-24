@@ -18,8 +18,8 @@ function CourseSlidebar() {
     <div className="collapse navbar-collapse container" id="navbarNavAltMarkup">
       <div className="navbar-nav ">
       <Link to={`/mychapter/${courseId}/`} className="nav-link  fw-bold h3" aria-current="page" >Chapter</Link>
-      <Link to={`/myassingment/${courseId}/`} className="nav-link  fw-bold h3" aria-current="page" >Assigments</Link>
-      <Link to={`/mycirtificate/${courseId}/`} className="nav-link  fw-bold" aria-current="page" >Cirtificate</Link> 
+      <Link to={`/myassingment/${courseId}/`} className="nav-link  fw-bold h3" aria-current="page" >Assignments</Link>
+      <Link to={`/mycirtificate/${courseId}/`} className="nav-link  fw-bold" aria-current="page" >Certificate</Link> 
         
        
       </div>

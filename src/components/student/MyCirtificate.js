@@ -70,14 +70,14 @@ function MyCirtificate() {
       <tbody>
       
                    <tr >
-                    <th >cirtificate</th>
+                    <th >certificate</th>
                     
                     <td>
                       {status && count >0 ? 
 
                       <p>Open a PDF file <a href={'https://freelearncy.tk'+cirtificate} target='_blank' rel='noopener noreferrer'>Open</a></p>
                         :
-                        <p className='text-danger'>You are Not complete</p>
+                        <p className='text-danger'>You are Not completed</p>
                     }
                       </td>
                     

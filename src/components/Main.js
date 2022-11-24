@@ -64,7 +64,7 @@ function Main() {
       <Routes>
 
         {/* home */}
-        <Route path='/' element={<RequireAuth><Home/></RequireAuth>}></Route>
+        <Route path='/' element={<Home/>}></Route>
         <Route path='/about' element={<About/>}></Route>
         <Route path='/details/:course_id' element={<CourseDetail/>}></Route>
        

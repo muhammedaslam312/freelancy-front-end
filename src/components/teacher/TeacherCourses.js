@@ -16,7 +16,7 @@ function TeacherCourses() {
   const [active, setActive] = useState(null)
  
   const [currentPage,setCurrentPage] =useState(1);
-  const [postsPerPage,setPostPerPage] = useState(8)
+  const [postsPerPage,setPostPerPage] = useState(5)
 
 
   useEffect(()=>{
@@ -49,7 +49,7 @@ function TeacherCourses() {
 
   
 
-<table class="table">
+<table class="table" style={{minHeight:'70vh'}}>
   <thead>
   {/* <h5 className='table-header '>My Courses</h5> */}
     <tr>
@@ -80,13 +80,14 @@ function TeacherCourses() {
   </tbody>
   
 </table>
-<Pagination totalPosts={courses.length} 
+
+  </section>
+  <Pagination totalPosts={courses.length} 
         postsPerPage={postsPerPage}
         setCurrentPage={setCurrentPage}
         currentPage = {currentPage}
 
         />
-  </section>
 
 </div>
 </div>

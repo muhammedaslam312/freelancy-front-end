@@ -47,7 +47,7 @@ function Home() {
         { latestCourses &&
           latestCourses.map((course,index)=>{
             return (
-              <div className=" col-12 col-md-6 col-lg-3 mt-4  " key={index}>
+              <div className=" col-12 col-md-6 col-lg-3 mt-4 p-3 g-2 border  " key={index}>
               <div className=" m-auto" style={{ width: "18rem" }}>
                 <Link to={`/details/${course.id}`} style={{ margin:'auto'}}><img style={{ height: "200px",width: "100%",objectFit:'cover'}}src={imageFolder+course.feature_image}className="card-img-top" alt="..." />
                 </Link>
@@ -78,7 +78,7 @@ function Home() {
       { recomtedCourses &&
           recomtedCourses.map((course,index)=>{
             return (
-        <div className=" col-12 col-md-6 col-lg-3 mt-4">
+        <div className=" col-12 col-md-6 col-lg-3 mt-4 p-3 g-2 border">
           <div className=" m-auto" style={{ width: "18rem" }}>
             <a href="#" style={{ margin:'auto'}}><img style={{ height: "200px",width: "100%",objectFit:'cover'}}src={imageFolder+course.feature_image} className="card-img-top" alt="..." />
             </a>

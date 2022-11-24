@@ -30,6 +30,8 @@ export const AuthProvider = ({children})=>{
     const [courseId,setCourseId] =useState('');
 
     const [search,setSearch]= useState('');
+
+    const [verify,setVerify] = useState('');
     
     // const getUserData = (id) => {
     //     axios.get(BaseUrl+'user_details/'+id).then(response =>{
@@ -89,7 +91,9 @@ export const AuthProvider = ({children})=>{
         console.log(response);
         console.log(response.data)
         if (response.status === 200){
-            navigate('/user-login')
+            
+            navigate('/user-login',{ data: true} )
+            
             
            
         }else{
@@ -175,6 +179,7 @@ export const AuthProvider = ({children})=>{
         courseId:courseId,
         search:search,
         setSearch:setSearch,
+        
         
         
     }

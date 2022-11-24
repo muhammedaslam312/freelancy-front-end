@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import './Login.css'
 import AuthContext from '../../context/AuthContext'
 import axios from 'axios'
@@ -8,9 +8,15 @@ import Head from '../home/Head'
 
 function Slogin() {
 
-  let {loginUser,user,error} = useContext(AuthContext)
+  const location = useLocation()
+  console.log(location.state);
+
+
+  let {loginUser,user,error,verify} = useContext(AuthContext)
   console.log(error);
   const [userDetails, setUserDetails] = useState({email:'',password:''});
+
+  const [resError,setResError] =useState('')
 
   const handleChanges=((event)=>{
     setUserDetails({
@@ -26,8 +32,12 @@ function Slogin() {
       loginUser(userDetails,response)
       console.log(response.data.detail);
      
-    })
-
+    }).catch((error) => {
+      console.log(error.response.data.detail);
+      setResError('incorrect email or password ');
+      
+      
+    });
 
   }
   console.log('aslam');
@@ -43,6 +53,9 @@ function Slogin() {
           class="img-fluid" alt="Sample image"/>
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        {location.data && <div class="alert alert-primary" role="alert">
+  Verification success..pls Login
+</div>}
         <form onSubmit={handleSubmit}>
             <h5>User Login</h5>
           <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
@@ -78,9 +91,9 @@ function Slogin() {
             {/* <!-- Checkbox --> */}
             <div class="form-check mb-0">
               
-             
+            {resError && <p className='text-danger'>{resError}</p>}
             </div>
-            <a href="#!" class="text-body">Forgot password?</a>
+            {/* <a href="#!" class="text-body">Forgot password?</a> */}
           </div>
 
           <div class="text-center text-lg-start mt-4 pt-2">

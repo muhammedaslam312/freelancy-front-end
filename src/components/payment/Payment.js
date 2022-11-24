@@ -38,7 +38,7 @@ function Payment() {
           console.log("Everything is OK!");
           setCourse("");
           setAmount("");
-          navigate('/payment/success')
+          navigate('/payment/success',{ state: { course_id: courseID} })
           
         })
         .catch((err) => {
@@ -161,7 +161,7 @@ function Payment() {
       
     //   </div>
     // </div>
-    <div>
+    <div style={{minHeight:'100vh'}}>
       <Head/>
     <div className="container" style={{ marginTop: "20vh" }}>
       <form>

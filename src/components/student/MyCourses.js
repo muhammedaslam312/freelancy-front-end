@@ -23,8 +23,10 @@ function MyCourses() {
 
 
   },[load])
+  
   console.log(entrollCourse);
   console.log(user.user_id);
+  console.log(load);
   return (
 
 <div style={{minHeight:'100vh'}}>
