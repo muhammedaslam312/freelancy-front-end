@@ -3,21 +3,29 @@ import AdminHeader from './AdminHeader'
 import AdminSidebar from './AdminSidebar'
 
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { getAllEntrollCourse } from '../../admin_axios/axios';
+import { getAllAdminCarosel, getAllCommiton, getAllEntrollCourse } from '../../admin_axios/axios';
 import { useEffect } from 'react';
 
 function AdminDashboard() {
 
     const [course, setCourse] = useState([]);
+    const [amount,setAmount] = useState('')
 
     useEffect(()=>{
         getAllEntrollCourse().then((course)=>{
             setCourse(course)
             
         })
+
+        getAllCommiton().then((res)=>{
+            setAmount(res)
+            
+        })
         
 
     },[])
+
+    console.log(amount);
     
  const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70 },
@@ -71,8 +79,8 @@ function AdminDashboard() {
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                Admin Earnings</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{amount.admin_commision}</div>
                                         </div>
                                         
                                     </div>
@@ -87,8 +95,9 @@ function AdminDashboard() {
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                Total Earnings</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{amount.total_earned}
+</div>
                                         </div>
                                         
                                     </div>

@@ -160,3 +160,21 @@ export const getAllEntrollCourse = ()=>{
          })
         })
 }
+
+export const getAllCommiton = ()=>{
+
+    return new Promise((resolve,reject)=>{
+        const AdminToken = JSON.parse(localStorage.getItem('authToken')).access
+        console.log(AdminToken)
+        axios.get(BaseUrl+'admincommition/',{
+            headers:{"Authorization" : `Bearer ${AdminToken}`}
+        }).then((response)=>{
+            console.log(response.data);
+            console.log("getCommition Axios working");
+            resolve(response.data)
+        }).catch((err) => {
+            console.log("getCommition Axios Not working");
+            reject(err)
+         })
+        })
+}
