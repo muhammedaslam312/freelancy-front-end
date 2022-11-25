@@ -97,22 +97,28 @@ import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import TeacherSidebar from './TeacherSidebar';
 import Theader from './Theader';
 import AuthContext from '../../context/AuthContext';
-import { getAllTeacherEntrollCourse } from '../../teacher_axios/teacher_axios';
+import { getAllTeacherEntrollCourse, getTeacherCommition } from '../../teacher_axios/teacher_axios';
 import axios from 'axios';
 import BaseUrl from '../../BaseUrl';
-import { Link } from 'react-router-dom';
+import { Link, useAsyncError } from 'react-router-dom';
 
 function TeacherDashboard() {
     
     const {teacher} =useContext(AuthContext)
     const [course, setCourse] = useState([]);
     const [dashboard,setDashboard]=useState([]);
+    const [amount,setAmount] =useState('');
 
     useEffect(()=>{
         getAllTeacherEntrollCourse(teacher.teacher_id).then((course)=>{
             setCourse(course)
             
         })
+        getTeacherCommition(teacher.teacher_id).then((res)=>{
+            setAmount(res)
+            
+        })
+
         try{
                    const TeacherToken = JSON.parse(localStorage.getItem('teacherToken')).token
                    axios.get(BaseUrl+'teacher_dashboard/'+teacher.teacher_id+'/',{
@@ -174,7 +180,7 @@ function TeacherDashboard() {
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total Earnings </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{amount.total_earned}</div>
                                         </div>
                                         
                                     </div>
@@ -190,7 +196,7 @@ function TeacherDashboard() {
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Admin Earnings </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{amount.admin_commision}</div>
                                         </div>
                                         
                                     </div>

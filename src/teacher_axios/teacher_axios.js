@@ -144,3 +144,21 @@ export const getAllTeacherEntrollCourse = (teacher_id)=>{
         })
 }
 
+export const getTeacherCommition = (teacher_id)=>{
+
+    return new Promise((resolve,reject)=>{
+        const TeacherToken = JSON.parse(localStorage.getItem('teacherToken')).token
+        console.log(TeacherToken)
+        axios.get(BaseUrl+'teachercommition/'+teacher_id+'/',{
+            headers:{"Authorization" : `Bearer ${TeacherToken}`}
+        }).then((response)=>{
+            console.log(response.data);
+            console.log("getAllc Axios working");
+            resolve(response.data)
+        }).catch((err) => {
+            console.log("getAllc Axios Not working");
+            reject(err)
+         })
+        })
+}
+

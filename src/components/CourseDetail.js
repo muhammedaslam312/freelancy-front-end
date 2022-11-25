@@ -190,7 +190,7 @@ function CourseDetail() {
         {courseDetail.map((course, index) => {
           return (
             <div className="row" key={index}>
-              <div className="col-4 ">
+              <div className="col col-lg-4 ">
                 <div style={{ width: "20rem",textAlign:'left' }}>
                   <Link to="/details/1" style={{ margin: 'auto' }}><img style={{ height: "250px", width: "100%",objectFit:'cover' }} src={imageFolder + course.feature_image} className="card-img-top" alt="..." />
                   </Link>
@@ -213,7 +213,7 @@ function CourseDetail() {
 
               </div>
 
-              <div className="col-8 bg-light border border-dark p-1 ">
+              <div className="col col-lg-8  bg-light border border-dark p-1 ">
                 <div>
                   {course.price === 0 ?
                     <h1>{course.title} <span className="float-end fs-5 btn btn-light" style={{ cursor: "default" }}>
